@@ -1,0 +1,11 @@
+---
+boot_config_params:
+  - name: "gpu_mem"
+    value: 320
+
+boot_config_enabled:
+  - dtoverlay=hifiberry-dacplus
+
+boot_config_disabled:
+  - dtparam=audio=on
+

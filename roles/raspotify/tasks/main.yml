@@ -1,0 +1,50 @@
+- name: Add apt key
+  ansible.builtin.apt_key:
+    url: https://dtcooper.github.io/raspotify/key.asc
+    state: present
+
+- name: Add apt repository
+  apt_repository:
+    repo: deb https://dtcooper.github.io/raspotify raspotify main
+    state: present
+
+- name: Install
+  apt:
+    name: raspotify
+    update_cache: yes
+
+- name: Configure device name
+  lineinfile:
+    dest: "{{ raspotify_config_file }}"
+    regexp: "^#?DEVICE_NAME"
+    line: "DEVICE_NAME=\"{{ raspotify_device_name }}\""
+    state: present
+  notify:
+    - restart
+
+- name: Configure device type
+  lineinfile:
+    dest: "{{ raspotify_config_file }}"
+    regexp: "^#?DEVICE_TYPE"
+    line: "DEVICE_TYPE=\"{{ raspotify_device_type }}\""
+    state: present
+  notify:
+    - restart
+
+- name: Configure bit rate
+  lineinfile:
+    dest: "{{ raspotify_config_file }}"
+    regexp: "^#?BITRATE"
+    line: "BITRATE=\"{{ raspotify_bit_rate }}\""
+    state: present
+  notify:
+    - restart
+
+- name: Configure volume args
+  lineinfile:
+    dest: "{{ raspotify_config_file }}"
+    regexp: "^#?VOLUME_ARGS"
+    line: "VOLUME_ARGS=\"{{ raspotify_volume_args }}\""
+    state: present
+  notify:
+    - restart

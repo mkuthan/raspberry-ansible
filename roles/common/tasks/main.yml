@@ -1,0 +1,47 @@
+- name: Set boot config params
+  lineinfile:
+    regexp: '^{{ item.name }}='
+    line: "{{ item.name }}={{ item.value }}"
+    path: "{{ boot_config_file }}"
+    state: present
+  loop: "{{ boot_config_params }}"
+  notify:
+    - reboot
+
+- name: Enable boot config params
+  lineinfile:
+    regexp: '^#?{{ item }}'
+    line: "{{ item }}"
+    path: "{{ boot_config_file }}"
+    state: present
+  loop: "{{ boot_config_enabled }}"
+  notify:
+    - reboot
+
+- name: Disable boot config params
+  lineinfile:
+    regexp: '^#?{{ item }}'
+    line: "#{{ item }}"
+    path: "{{ boot_config_file }}"
+    state: present
+  loop: "{{ boot_config_disabled }}"
+  notify:
+    - reboot
+
+- name: Disable root login
+  lineinfile:
+    dest: "{{ sshd_config_file }}"
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+    state: present
+  notify:
+    - restart sshd
+
+- name: Disable password login
+  lineinfile:
+    dest: "{{ sshd_config_file }}"
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+  notify:
+    - restart sshd

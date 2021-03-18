@@ -1,0 +1,9 @@
+- name: Install
+  apt:
+    name: "{{ default_packages }}"
+    update_cache: yes
+
+- name: Update
+  apt:
+    name: "*"
+    state: latest

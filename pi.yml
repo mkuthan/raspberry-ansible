@@ -1,0 +1,3 @@
+- import_playbook: common.yml
+- import_playbook: packages.yml
+- import_playbook: raspotify.yml
