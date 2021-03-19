@@ -51,7 +51,27 @@
   notify:
     - restart sshd
 
+- name: Disable last log
+  lineinfile:
+    dest: "{{ sshd_config_file }}"
+    regexp: "^PrintLastLog"
+    line: "PrintLastLog no"
+    state: present
+  notify:
+    - restart sshd
+
 - name: Install unattended-upgrades
   apt:
     name: unattended-upgrades
     update_cache: yes
+
+- name: Remove default motd
+  file:
+    path: /etc/motd
+    state: absent
+
+# https://github.com/gagle/raspberrypi-motd
+- name: Configure custom motd
+  copy:
+    src: motd.sh
+    dest: /etc/profile.d/motd.sh
