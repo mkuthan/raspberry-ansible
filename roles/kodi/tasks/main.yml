@@ -1,0 +1,25 @@
+---
+- name: Create group
+  group:
+    name: "{{ kodi_group }}"
+    system: true
+
+- name: Create user
+  user:
+    name: "{{ kodi_user }}"
+    group: "{{ kodi_group }}"
+    groups: [ "audio", "input", "video" ]
+    system: true
+  register: user
+
+- name: Install
+  apt:
+    name: kodi
+    update_cache: yes
+
+- name: Install service
+  template:
+    src: kodi.service.j2
+    dest: /etc/systemd/system/kodi.service
+  notify:
+    - restart

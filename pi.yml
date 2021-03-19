@@ -2,3 +2,4 @@
 - import_playbook: packages.yml
 - import_playbook: pihole.yml
 - import_playbook: raspotify.yml
+- import_playbook: kodi.yml

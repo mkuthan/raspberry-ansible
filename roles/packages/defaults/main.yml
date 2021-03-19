@@ -1,5 +1,11 @@
 ---
 default_packages:
+  # admin utilities
   - mc
   - htop
+  - iotop
+  - lsof
+  - dnsutils
+  # required by ansible docker_container
   - python3-docker
+

@@ -1,13 +1,13 @@
 ---
-- name: Create user
+- name: Create group
   group:
-    name: "{{pihole_group}}"
+    name: "{{ pihole_group }}"
     system: true
 
 - name: Create user
   user:
-    name: "{{pihole_user}}"
-    group: "{{pihole_group}}"
+    name: "{{ pihole_user }}"
+    group: "{{ pihole_group }}"
     groups: [ "docker" ]
     system: true
   register: user
