@@ -1,8 +1,13 @@
 # Raspberry PI Configuration
 
-My private Raspberry Pi infrastructure as a code. Do not touch anything by hand, use Ansible.
+My private Raspberry Pi installation at home. 
 
-## Install image
+* Do not touch anything by hand, use Ansible.
+* If something is hard to automate, document it.
+
+## Manual setup
+
+### Install image
 
 Download Raspberry Pi OS Lite image from https://www.raspberrypi.org/software/operating-systems/.
 
@@ -36,7 +41,7 @@ touch wifi
 
 Boot Raspberry Pi
 
-## Configuring SSH
+### Configuring SSH
 
 Generate key:
 
@@ -60,10 +65,10 @@ Copy key to Raspberry Pi:
 ```
 ssh-copy-id -i ~/.ssh/pi_rsa.pub pi
 ```
-## Install and configure everything else
+
+### Install Docker
 
 ```
-ansible-playbook pi.yml
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 ```
-
-That's all folks :)

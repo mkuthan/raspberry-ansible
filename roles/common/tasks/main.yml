@@ -28,7 +28,12 @@
   notify:
     - reboot
 
-- name: Disable root login
+- name: Disable pi login
+  user:
+    name: pi
+    password: '!'
+
+- name: Disable root login via SSH
   lineinfile:
     dest: "{{ sshd_config_file }}"
     regexp: "^PermitRootLogin"
@@ -37,7 +42,7 @@
   notify:
     - restart sshd
 
-- name: Disable password login
+- name: Disable password login via SSH
   lineinfile:
     dest: "{{ sshd_config_file }}"
     regexp: "^PasswordAuthentication"
@@ -45,3 +50,8 @@
     state: present
   notify:
     - restart sshd
+
+- name: Install unattended-upgrades
+  apt:
+    name: unattended-upgrades
+    update_cache: yes
