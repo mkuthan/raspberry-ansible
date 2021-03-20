@@ -31,8 +31,7 @@
       - 53:53/tcp # DNS
       - 53:53/udp # DNS
       - 443:443/tcp # DNS over HTTPS
-      - 784:784/udp # DNS over QUIC
-      - 853:853/tcp #  DNS over TLS
+      - 853:853/tcp # DNS over TLS
       - "{{ adguard_http_port }}:3000/tcp"
     volumes:
       - "{{ user.home }}/conf:/opt/adguardhome/conf"
