@@ -1,0 +1,7 @@
+---
+adguard_version: v0.105.2
+adguard_http_port: 3000
+adguard_dns:
+  - 8.8.8.8
+  - 8.8.4.4
+adguard_timezone: Europe/Warsaw

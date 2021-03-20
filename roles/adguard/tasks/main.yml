@@ -1,0 +1,53 @@
+---
+- name: Create group
+  group:
+    name: "{{ adguard_group }}"
+    system: true
+
+- name: Create user
+  user:
+    name: "{{ adguard_user }}"
+    group: "{{ adguard_group }}"
+    groups: [ "docker" ]
+    system: true
+  register: user
+
+- name: Create directories
+  file:
+    path: "{{ user.home }}/{{ item }}"
+    owner: "{{ adguard_user }}"
+    group: "{{ adguard_group }}"
+    mode: "0755"
+    state: directory
+  with_items:
+    - conf
+    - work
+
+- name: Create container
+  docker_container:
+    name: adguard
+    image: adguard/adguardhome:{{ adguard_version }}
+    published_ports:
+      - 53:53/tcp # DNS
+      - 53:53/udp # DNS
+      - 443:443/tcp # DNS over HTTPS
+      - 784:784/udp # DNS over QUIC
+      - 853:853/tcp #  DNS over TLS
+      - "{{ adguard_http_port }}:3000/tcp"
+    volumes:
+      - "{{ user.home }}/conf:/opt/adguardhome/conf"
+      - "{{ user.home }}/work:/opt/adguardhome/work"
+    container_default_behavior: no_defaults
+    state: present
+  notify:
+    - restart
+
+- name: Install service
+  template:
+    src: adguard.service.j2
+    dest: /etc/systemd/system/adguard.service
+  notify:
+    - restart
+
+
+

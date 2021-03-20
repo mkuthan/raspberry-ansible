@@ -1,9 +1,25 @@
 # Raspberry PI Configuration
 
-My private Raspberry Pi installation at home. 
+My private Raspberry Pi installation at home.
 
 * Do not touch anything by hand, use Ansible.
-* If something is hard to automate, document it.
+* If something is hard to automate, document it at least.
+
+## Ansible playbooks
+
+Install everything:
+
+```
+ansible-playbook pi.yml
+```
+
+Available playbooks:
+
+* common - missing pieces of vanilla distribution
+* packages - my linux toolbox
+* adguard - privacy all the time
+* raspotify - make my retired HiFi great again
+* kodi - the best smart tv ever
 
 ## Manual setup
 
@@ -17,6 +33,12 @@ Copy the image to the SD card:
 sudo dd bs=1m if=path_of_your_image.img of=/dev/rdiskN
 ```
 
+Encrypt WiFi password:
+
+```
+wpa_passphrase «SSID»
+```
+
 Configure WiFi:
 
 ```
@@ -26,9 +48,8 @@ update_config=1
 country=«ISO-3166-1_two-letter_country_code»
 
 network={
-    ssid="«SSID»"
-    psk="«PSK»"
-    key_mgmt=WPA-PSK
+    ssid=«SSID»
+    psk=«encrypted_wpa_passphrase»
 }
 EOT
 ```

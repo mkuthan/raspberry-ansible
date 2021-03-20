@@ -9,3 +9,7 @@ boot_config_enabled:
 boot_config_disabled:
   - dtparam=audio=on
 
+hardening_packages:
+  - unattended-upgrades
+  - fail2ban
+

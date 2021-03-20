@@ -60,9 +60,9 @@
   notify:
     - restart sshd
 
-- name: Install unattended-upgrades
+- name: Install hardening packages
   apt:
-    name: unattended-upgrades
+    name: "{{ hardening_packages }}"
     update_cache: yes
 
 - name: Remove default motd

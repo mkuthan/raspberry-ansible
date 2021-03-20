@@ -1,11 +1,16 @@
 ---
 default_packages:
   # admin utilities
-  - mc
+  - deborphan
+  - dnsutils
+  - git
   - htop
   - iotop
   - lsof
-  - dnsutils
+  - mc
+  - nmap
+  - screen
+  - tcpdump
   # required by ansible docker_container
   - python3-docker
 

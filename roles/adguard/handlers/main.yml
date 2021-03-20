@@ -1,4 +1,4 @@
 - name: restart
   systemd:
-    name: pihole
+    name: adguard
     state: restarted
