@@ -20,6 +20,7 @@ Available playbooks:
 * adguard - privacy all the time
 * raspotify - make my retired HiFi great again
 * kodi - the best smart tv ever
+* transmission - the lightest BT daemon
 
 ## Manual setup
 

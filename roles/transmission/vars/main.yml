@@ -1,0 +1,4 @@
+---
+transmission_user: debian-transmission
+transmission_group: debian-transmission
+transmission_config_file: /etc/transmission-daemon/settings.json
