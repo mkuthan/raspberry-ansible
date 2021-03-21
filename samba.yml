@@ -1,0 +1,83 @@
+---
+- hosts: all
+  roles:
+    - role: bertvv.samba
+
+  vars:
+    password_salt: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      62643661646164616430306433353336363832633738376431303565653962386232643961313833
+      6132353861373961353233633461313162323337353930650a616438303665613737346465616265
+      35653262623430353237333735613565353236663336326365663232666465316331376631633566
+      3835643061643930620a366238313766393066356365663561336335623838663533373933346635
+      3266
+
+    users:
+      - name: marcin
+        password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          31616637663337613832646535653665666136373566666365613239323536323931636539643738
+          3834613031376235323866636566636663336635656639610a373064633634313235656334323761
+          62383361343531613263323966643533353361363064363936616563663961646534636165366661
+          3633363033353162390a643530323833396539326266616161363963336531646161646361383639
+          3763
+      - name: magda
+        password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          36346635613466386336363034356234366132366532343261396630303736626230336239636663
+          3433383164306539666161313934613537313934366638630a356631306235656463363435396364
+          33663566306164336239333038643838343834343239313134343936386234366231633337616463
+          3061373463643132610a316632316261353237396564616262346664386339633338613863393162
+          3136
+      - name: maciek
+        password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          65303461313233613238373335313735363864373738363734383936613538323438613034316239
+          3837636561323862623265333135373066376165636632630a633134646366376438626666333736
+          34396566363533366138313863376438623733386461653864313561316230613032383562313435
+          3161633230343931320a336636313138633665353030383032626362323437313537613730666638
+          3061
+
+    samba_workgroup: BEKASOW
+
+    samba_log: /var/log/samba/log.%m
+    samba_log_size: 10000
+    samba_log_level: 3
+
+    samba_apple_extensions: true
+
+    # https://github.com/bertvv/ansible-role-samba/issues/62
+    samba_mitigate_cve_2017_7494: false
+
+    samba_map_to_guest: "bad user"
+
+    samba_users:
+      - name: marcin
+        password: "{{ users | select_attribute_by_key('name', 'marcin', 'password') }}"
+      - name: magda
+        password: "{{ users | select_attribute_by_key('name', 'magda', 'password') }}"
+      - name: maciek
+        password: "{{ users | select_attribute_by_key('name', 'maciek', 'password') }}"
+
+    samba_shares_root: /var/lib/samba/shares
+    samba_shares:
+      - name: publicshare
+        comment: "Public share for authenticated users"
+        write_list: +users
+        group: users
+        browseable: "yes"
+      - name: guestshare
+        comment: "Writeable share for guest"
+        public: "yes"
+        guest_ok: "yes"
+        writable: "yes"
+        browseable: "yes"
+
+  pre_tasks:
+    - name: Create accounts
+      user:
+        name: "{{ item.name }}"
+        password: "{{ item.password | password_hash('sha512', password_salt) }}"
+        group: "users"
+      with_items: "{{ users }}"
+      no_log: true

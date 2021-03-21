@@ -12,4 +12,3 @@ boot_config_disabled:
 hardening_packages:
   - unattended-upgrades
   - fail2ban
-

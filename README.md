@@ -7,6 +7,12 @@ My private Raspberry Pi installation at home.
 
 ## Ansible playbooks
 
+Install 3rd party roles:
+
+```
+ansible-galaxy install -r requirements.yml
+```
+
 Install everything:
 
 ```
@@ -21,6 +27,7 @@ Available playbooks:
 * raspotify - make my retired HiFi great again
 * kodi - the best smart tv ever
 * transmission - the lightest BT daemon
+* samba - network attached storage
 
 ## Manual setup
 

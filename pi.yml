@@ -4,4 +4,6 @@
 - import_playbook: raspotify.yml
 - import_playbook: kodi.yml
 - import_playbook: transmission.yml
+- import_playbook: samba.yml
+
 
