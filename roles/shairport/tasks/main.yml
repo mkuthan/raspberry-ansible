@@ -1,0 +1,12 @@
+- name: Install
+  apt:
+    name: shairport-sync
+    default_release: buster-backports
+    update_cache: yes
+
+- name: Configure
+  template:
+    src: shairport-sync.conf.j2
+    dest: "{{ shairport_config_file }}"
+  notify:
+    - restart

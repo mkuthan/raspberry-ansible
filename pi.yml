@@ -1,7 +1,9 @@
 - import_playbook: common.yml
 - import_playbook: packages.yml
+- import_playbook: bakup.xml
 - import_playbook: adguard.yml
 - import_playbook: raspotify.yml
+- import_playbook: shairport.yml
 - import_playbook: kodi.yml
 - import_playbook: transmission.yml
 - import_playbook: samba.yml

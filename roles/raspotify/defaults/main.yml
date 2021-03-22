@@ -1,5 +1,5 @@
 ---
-raspotify_device_name: malina
-raspotify_device_type: speaker
+raspotify_device_name: raspotify
+raspotify_device_type: avr
 raspotify_bit_rate: 320
 raspotify_volume_args: --enable-volume-normalisation --volume-ctrl linear --initial-volume 60

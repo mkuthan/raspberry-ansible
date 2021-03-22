@@ -1,0 +1,5 @@
+---
+- name: restart
+  service:
+    name: shairport-sync
+    state: restarted

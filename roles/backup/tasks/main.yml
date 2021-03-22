@@ -1,0 +1,11 @@
+---
+- name: Install
+  apt:
+    name: [ "backupninja" ]
+    update_cache: yes
+
+- name: Configure
+  template:
+    src: "{{ item }}"
+    dest: "{{ backupninja_config_dir }}/{{ item | basename | regex_replace('\.j2$', '') }}"
+    with_fileglob: "../templates/*.j2"

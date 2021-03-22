@@ -1,12 +1,10 @@
 - name: Add apt key
-  ansible.builtin.apt_key:
+  apt_key:
     url: https://dtcooper.github.io/raspotify/key.asc
-    state: present
 
 - name: Add apt repository
   apt_repository:
     repo: deb https://dtcooper.github.io/raspotify raspotify main
-    state: present
 
 - name: Install
   apt:

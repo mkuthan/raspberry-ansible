@@ -23,8 +23,9 @@ Available playbooks:
 
 * common - missing pieces of vanilla distribution
 * packages - my linux toolbox
+* backup - to backup or not to backup, that’s no question  
 * adguard - privacy all the time
-* raspotify - make my retired HiFi great again
+* raspotify, shairport - make my retired HiFi great again
 * kodi - the best smart tv ever
 * transmission - the lightest BT daemon
 * samba - network attached storage

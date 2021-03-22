@@ -1,0 +1,6 @@
+# not finished yet
+---
+- hosts: all
+  roles:
+    - role: backup
+

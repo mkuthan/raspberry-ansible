@@ -1,0 +1,10 @@
+general = {
+    name = "{{ shairport_device_name }}";
+    output_backend: "alsa";
+    volume_range_db = 60;
+}
+
+alsa = {
+    output_device = "default";
+    mixer_control_name = "Digital";
+}

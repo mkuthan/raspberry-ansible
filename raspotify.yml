@@ -3,3 +3,7 @@
   roles:
     - role: raspotify
 
+  vars:
+    raspotify_device_name: salon
+
+

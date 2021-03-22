@@ -1,0 +1,9 @@
+---
+- hosts: all
+  roles:
+    - role: shairport
+
+  vars:
+    shairport_device_name: salon
+
+
