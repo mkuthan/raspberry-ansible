@@ -38,6 +38,14 @@
     regexp: '^127\.0\.1\.1'
     line: '127.0.1.1 {{ hostname }}'
 
+- name: Configure locale
+  locale_gen:
+    name: "{{ locale }}"
+
+- name: Update 'LANG'
+  command: localectl set-locale LANG={{ locale }}
+  changed_when: locale != lookup('env', 'LANG')
+
 - name: Configure timezone
   timezone:
     name: "{{ timezone }}"

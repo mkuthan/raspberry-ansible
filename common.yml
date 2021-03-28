@@ -13,6 +13,7 @@
       - dtoverlay=hifiberry-dacplus
 
     hostname: salon
+    locale: en_US.UTF-8
     timezone: Europe/Warsaw
 
     ip_address: 192.168.1.2/24
