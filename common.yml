@@ -24,7 +24,11 @@
         path: /media/disk1
         fstype: ext4
         opts: defaults,nofail,x-systemd.device-timeout=1s
-      - uuid: 12a4286b-176c-44bf-8a6c-b8807e552ed4
+      - uuid: aaf75bbe-3322-4897-a978-00401760dea7
         path: /media/disk2
+        fstype: ext4
+        opts: defaults,nofail,x-systemd.device-timeout=1s
+      - uuid: 834d8e92-b1fe-4f63-bbb7-25373734e592
+        path: /media/timemachine
         fstype: ext4
         opts: defaults,nofail,x-systemd.device-timeout=1s
