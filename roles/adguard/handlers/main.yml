@@ -1,4 +1,5 @@
 - name: restart
   systemd:
     name: adguard
+    enabled: yes
     state: restarted

@@ -5,6 +5,7 @@
 - name: Add apt repository
   apt_repository:
     repo: deb https://dtcooper.github.io/raspotify raspotify main
+    filename: 'raspotify'
 
 - name: Install
   apt:
@@ -43,6 +44,15 @@
     dest: "{{ raspotify_config_file }}"
     regexp: "^#?VOLUME_ARGS"
     line: "VOLUME_ARGS=\"{{ raspotify_volume_args }}\""
+    state: present
+  notify:
+    - restart
+
+- name: Configure backend args
+  lineinfile:
+    dest: "{{ raspotify_config_file }}"
+    regexp: "^#?BACKEND_ARGS"
+    line: "BACKEND_ARGS=\"{{ raspotify_backend_args }}\""
     state: present
   notify:
     - restart

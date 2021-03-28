@@ -3,3 +3,28 @@
   roles:
     - role: common
 
+  vars:
+    boot_config_params:
+      - name: "gpu_mem"
+        value: 256
+
+    boot_config_enabled:
+      - dtoverlay=vc4-fkms-v3d
+      - dtoverlay=hifiberry-dacplus
+
+    hostname: salon
+    timezone: Europe/Warsaw
+
+    ip_address: 192.168.1.2/24
+    gateway_address: 192.168.1.1
+    dns_addresses: [ 8.8.8.8, 8.8.4.4 ]
+
+    mounts:
+      - uuid: 24963094-c186-4ad5-a376-1efa26facc01
+        path: /media/disk1
+        fstype: ext4
+        opts: defaults,nofail,x-systemd.device-timeout=1s
+      - uuid: 12a4286b-176c-44bf-8a6c-b8807e552ed4
+        path: /media/disk2
+        fstype: ext4
+        opts: defaults,nofail,x-systemd.device-timeout=1s

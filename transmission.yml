@@ -3,3 +3,11 @@
   roles:
     - role: transmission
 
+  vars:
+    transmission_speed_limit_down: 100000
+    transmission_speed_limit_up: 10000
+
+    transmission_download_dir: /media/disk1/transmission/downloads
+    transmission_incomplete_dir: /media/disk1/transmission/tmp
+
+

@@ -1,1 +1,3 @@
 ---
+hdidle_config_file: /etc/default/hd-idle
+hdile_opts: "-i {{ hdidle_idle_time }} -l /var/log/hd-idle.log"

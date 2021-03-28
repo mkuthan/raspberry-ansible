@@ -1,6 +1,14 @@
-# not finished yet
 ---
 - hosts: all
   roles:
     - role: backup
+
+  vars:
+    backup_keep_days: 90
+    backup_dest_dir: /media/disk2/backup
+    backup_source_dirs:
+      - /etc
+      - /home
+      - /root
+      - /media/disk1/public
 

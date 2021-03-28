@@ -3,14 +3,27 @@ default_packages:
   # admin utilities
   - deborphan
   - dnsutils
-  - git
+  - hd-idle
+  - hdparm
   - htop
   - iotop
   - lsof
   - mc
   - nmap
   - screen
+  - smartmontools
   - tcpdump
-  # required by ansible docker_container
+  # build tools
+  - build-essential
+  - devscripts
+  - git
+  # security
+  - unattended-upgrades
+  - fail2ban
+  # docker
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
   - python3-docker
 
+hdidle_idle_time: 600

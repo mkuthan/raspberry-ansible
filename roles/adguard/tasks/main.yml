@@ -43,7 +43,7 @@
 
 - name: Install service
   template:
-    src: adguard.service.j2
+    src: adguard.service
     dest: /etc/systemd/system/adguard.service
   notify:
     - restart

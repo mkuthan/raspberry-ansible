@@ -1,4 +1,5 @@
 - name: restart
   systemd:
     name: kodi
+    enabled: yes
     state: restarted

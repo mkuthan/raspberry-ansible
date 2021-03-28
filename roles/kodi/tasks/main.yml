@@ -12,14 +12,14 @@
     system: true
   register: user
 
-- name: Install
+- name: Install packages
   apt:
-    name: kodi
+    name: [ "kodi", "kodi-peripheral-joystick" ]
     update_cache: yes
 
 - name: Install service
   template:
-    src: kodi.service.j2
+    src: kodi.service
     dest: /etc/systemd/system/kodi.service
   notify:
     - restart

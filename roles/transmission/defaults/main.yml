@@ -4,8 +4,8 @@ transmission_rpc_port: 9091
 transmission_peer_port: 51413
 transmission_ratio_limit: 2
 
-transmission_speed_limit_down: 100000
-transmission_speed_limit_up: 10000
+transmission_speed_limit_down: 10000
+transmission_speed_limit_up: 1000
 
 transmission_download_dir: /var/lib/transmission-daemon/downloads
 transmission_incomplete_dir: /var/lib/transmission-daemon/tmp

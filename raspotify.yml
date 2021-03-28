@@ -5,5 +5,7 @@
 
   vars:
     raspotify_device_name: salon
+    raspotify_alsa_device: hw:CARD=sndrpihifiberry,DEV=0
+    raspotify_alsa_mixer_name: Digital
 
 

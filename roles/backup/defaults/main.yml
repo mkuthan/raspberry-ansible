@@ -1,1 +1,4 @@
 ---
+backup_dest_dir: /var/backup/backupninja
+backup_keep_days: 30
+backup_nice_level: 19

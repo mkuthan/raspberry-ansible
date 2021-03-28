@@ -1,2 +1,4 @@
 ---
-backupninja_config_dir: /etc/backup.d
+backup_config_dir: /etc/backup.d
+backup_dest_sys_dir: "{{ backup_dest_dir }}/sys"
+backup_dest_rdiff_dir: "{{ backup_dest_dir }}/rdiff"

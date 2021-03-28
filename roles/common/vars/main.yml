@@ -1,3 +1,4 @@
 ---
 boot_config_file: /boot/config.txt
+dhcpcd_config_file: /etc/dhcpcd.conf
 sshd_config_file: /etc/ssh/sshd_config

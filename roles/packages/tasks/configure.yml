@@ -1,0 +1,7 @@
+- name: Configure hd-idle
+  lineinfile:
+    dest: "{{ hdidle_config_file }}"
+    regexp: "^HD_IDLE_OPTS"
+    line: "HD_IDLE_OPTS={{ hdile_opts }}"
+  notify:
+    - restart hdidle

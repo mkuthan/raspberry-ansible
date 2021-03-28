@@ -4,6 +4,11 @@
     post_reboot_delay: 10
     reboot_timeout: 60
 
+- name: restart dhcpcd
+  service:
+    name: dhcpcd
+    state: restarted
+
 - name: restart sshd
   service:
     name: sshd

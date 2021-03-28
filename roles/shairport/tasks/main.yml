@@ -6,7 +6,7 @@
 
 - name: Configure
   template:
-    src: shairport-sync.conf.j2
+    src: shairport-sync.conf
     dest: "{{ shairport_config_file }}"
   notify:
     - restart
