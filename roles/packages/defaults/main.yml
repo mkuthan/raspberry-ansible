@@ -26,4 +26,8 @@ default_packages:
   - containerd.io
   - python3-docker
 
+# disk checks once a day
+smartmontools_interval: 86400
+
+# spin down disk after 10 minutes
 hdidle_idle_time: 600

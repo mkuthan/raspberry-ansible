@@ -1,7 +1,20 @@
-- name: Configure hd-idle
-  lineinfile:
-    dest: "{{ hdidle_config_file }}"
-    regexp: "^HD_IDLE_OPTS"
-    line: "HD_IDLE_OPTS={{ hdile_opts }}"
+- name: Configure smartmontools (defaults)
+  template:
+    src: smartmontools
+    dest: /etc/default/smartmontools
+  notify:
+    - restart smartmontools
+
+- name: Configure smartmontools (smartd.conf)
+  template:
+    src: smartd.conf
+    dest: /etc/smartd.conf
+  notify:
+    - restart smartmontools
+
+- name: Configure hd-idle (defaults)
+  template:
+    src: hd-idle
+    dest: /etc/default/hd-idle
   notify:
     - restart hdidle

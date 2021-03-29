@@ -9,6 +9,7 @@
         value: 256
 
     boot_config_enabled:
+      - dtoverlay=disable-wifi
       - dtoverlay=vc4-fkms-v3d
       - dtoverlay=hifiberry-dacplus
 
