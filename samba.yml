@@ -51,7 +51,7 @@
 
     samba_log: /var/log/samba/log.%m
     samba_log_size: 10000
-    samba_log_level: 3
+    samba_log_level: 1
 
     samba_apple_extensions: true
 
