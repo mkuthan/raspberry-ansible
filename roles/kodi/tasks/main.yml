@@ -14,7 +14,17 @@
 
 - name: Install packages
   apt:
-    name: [ "kodi", "kodi-peripheral-joystick" ]
+    name:
+      - "kodi"
+      - "kodi-audioencoder-flac"
+      - "kodi-audioencoder-lame"
+      - "kodi-audioencoder-vorbis"
+      - "kodi-audioencoder-wav"
+      - "kodi-imagedecoder-heif"
+      - "kodi-imagedecoder-raw"
+      - "kodi-inputstream-adaptive"
+      - "kodi-inputstream-rtmp"
+      - "kodi-peripheral-joystick"
     update_cache: yes
 
 - name: Install service
@@ -23,3 +33,9 @@
     dest: /etc/systemd/system/kodi.service
   notify:
     - restart
+
+- name: Enable service
+  systemd:
+    name: kodi
+    enabled: yes
+    masked: no

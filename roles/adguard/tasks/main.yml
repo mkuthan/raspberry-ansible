@@ -48,5 +48,9 @@
   notify:
     - restart
 
-
+- name: Enable service
+  systemd:
+    name: adguard
+    enabled: yes
+    masked: no
 
