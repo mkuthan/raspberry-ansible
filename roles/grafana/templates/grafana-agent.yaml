@@ -1,0 +1,21 @@
+integrations:
+  node_exporter:
+    enabled: true
+  prometheus_remote_write:
+    - basic_auth:
+        password: "{{ grafana_password }}"
+        username: "{{ grafana_username }}"
+      url: "{{ grafana_prometheus_url }}"
+prometheus:
+  configs:
+    - name: integrations
+      remote_write:
+        - basic_auth:
+            password: "{{ grafana_password }}"
+            username: "{{ grafana_username }}"
+          url: "{{ grafana_prometheus_url }}"
+  global:
+    scrape_interval: "{{ grafana_prometheus_scrape_interval }}"
+  wal_directory: /tmp/grafana-agent-wal
+server:
+  http_listen_port: 12345

@@ -1,0 +1,11 @@
+- name: Install
+  apt:
+    deb: "{{ grafana_agent_deb_url }}"
+
+- name: Configure
+  template:
+    src: grafana-agent.yaml
+    dest: /etc/grafana-agent.yaml
+    mode: "0640"
+  notify:
+    - restart

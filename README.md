@@ -29,6 +29,7 @@ Available playbooks:
 * transmission - the lightest BT daemon
 * samba - network attached storage
 * backup - to backup or not to backup, that’s no question
+* grafana - monitoring with Grafana Cloud, it's good to know the details over time
 
 ## Manual setup
 

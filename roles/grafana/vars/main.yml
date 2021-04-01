@@ -1,0 +1,1 @@
+grafana_agent_deb_url: https://github.com/grafana/agent/releases/download/v{{ grafana_agent_version }}/grafana-agent-{{ grafana_agent_version }}-1.armv7.deb
