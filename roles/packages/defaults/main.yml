@@ -24,6 +24,7 @@ default_packages:
   - docker-ce
   - docker-ce-cli
   - containerd.io
+  - docker-compose
   - python3-docker
 
 # disk checks once a day

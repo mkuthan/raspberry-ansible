@@ -2,3 +2,6 @@
 hostname: raspberrypi
 locale: en_GB.UTF-8
 timezone: Europe/London
+
+hifiberry_alias: hifiberry
+hifiberry_card: 2

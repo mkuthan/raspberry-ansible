@@ -66,6 +66,11 @@
   with_items: "{{ mounts }}"
   when: mounts is defined
 
+- name: Configure ALSA
+  template:
+    src: asound.conf
+    dest: "{{ asound_config_file }}"
+
 - name: Disable ubuntu login
   user:
     name: pi
