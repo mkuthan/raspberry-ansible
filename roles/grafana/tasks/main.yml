@@ -1,3 +1,10 @@
+- name: Check variables
+  assert:
+    that:
+      - grafana.username is defined
+      - grafana.password is defined
+    quiet: yes
+
 - name: Install
   apt:
     deb: "{{ grafana_agent_deb_url }}"

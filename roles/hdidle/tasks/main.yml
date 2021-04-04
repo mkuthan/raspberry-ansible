@@ -1,0 +1,11 @@
+- name: Install
+  apt:
+    name: hd-idle
+
+- name: Configure
+  template:
+    src: hd-idle
+    dest: /etc/default/hd-idle
+  when: hdidle is defined
+  notify:
+    - restart

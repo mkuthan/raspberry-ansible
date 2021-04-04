@@ -3,17 +3,14 @@ default_packages:
   # admin utilities
   - deborphan
   - dnsutils
-  - hd-idle
   - hdparm
   - htop
   - iotop
-  - log2ram
   - lsof
   - mc
   - nmap
   - rsync
   - screen
-  - smartmontools
   - tcpdump
   # build tools
   - build-essential

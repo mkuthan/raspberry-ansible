@@ -1,4 +1,3 @@
----
 boot_config_file: /boot/config.txt
 
 asound_config_file: /etc/asound.conf
@@ -7,8 +6,3 @@ dhcpcd_config_file: /etc/dhcpcd.conf
 journald_config_file: /etc/systemd/journald.conf
 
 sshd_config_file: /etc/ssh/sshd_config
-
-smartmontools_opts: "--interval={{ smartmontools.interval }}"
-smartmontools_device_scan: "-d removable -m root -M exec /usr/share/smartmontools/smartd-runner"
-
-hdile_opts: "-i {{ hdidle.idle_time }} -l /var/log/hd-idle.log"

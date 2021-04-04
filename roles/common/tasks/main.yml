@@ -18,9 +18,3 @@
   tags: [ "mounts" ]
 - import_tasks: motd.yml
   tags: [ "motd" ]
-- import_tasks: log2ram.yml
-  tags: [ "log2ram" ]
-- import_tasks: smartmontools.yml
-  tags: [ "smartmontools" ]
-- import_tasks: hdidle.yml
-  tags: [ "hdidle" ]

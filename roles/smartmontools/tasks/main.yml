@@ -1,15 +1,19 @@
-- name: Configure smartmontools (defaults)
+- name: Install
+  apt:
+    name: smartmontools
+
+- name: Configure defaults
   template:
-    src: default/smartmontools
+    src: smartmontools
     dest: /etc/default/smartmontools
   when: smartmontools is defined
   notify:
-    - restart smartmontools
+    - restart
 
-- name: Configure smartmontools (smartd.conf)
+- name: Configure smartd
   template:
     src: smartd.conf
     dest: /etc/smartd.conf
   when: smartmontools is defined
   notify:
-    - restart smartmontools
+    - restart

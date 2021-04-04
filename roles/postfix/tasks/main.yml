@@ -1,9 +1,9 @@
 - name: Check variables
   assert:
     that:
-      - postfix_relay_host is defined
-      - postfix_sasl_mail is defined
-      - postfix_sasl_password is defined
+      - postfix.relay_host is defined
+      - postfix.sasl_mail is defined
+      - postfix.sasl_password is defined
     quiet: yes
 
 - name: Install
@@ -15,11 +15,11 @@
   template:
     src: sasl_password
     dest: "{{ postfix_sasl_password_file }}"
-  register: postfix_sasl_passwd
+  register: sasl_password
 
 - name: Postmap SASL password
   command: postmap {{ postfix_sasl_password_file }}
-  when: postfix_sasl_passwd.changed
+  when: sasl_password.changed
 
 - name: Change SASL permissions
   file:
@@ -31,12 +31,12 @@
   lineinfile:
     dest: /etc/aliases
     regexp: "^root:"
-    line: "root: {{ postfix_sasl_mail }}"
-  register: postfix_aliases
+    line: "root: {{ postfix.sasl_mail }}"
+  register: aliases
 
 - name: Update aliases
   command: newaliases
-  when: postfix_aliases.changed
+  when: aliases.changed
 
 - name: Configure
   template:

@@ -1,1 +1,4 @@
+grafana_agent_version: 0.13.0
 grafana_agent_deb_url: https://github.com/grafana/agent/releases/download/v{{ grafana_agent_version }}/grafana-agent-{{ grafana_agent_version }}-1.armv7.deb
+grafana_prometheus_url: https://prometheus-blocks-prod-us-central1.grafana.net/api/prom/push
+grafana_prometheus_scrape_interval: 15s

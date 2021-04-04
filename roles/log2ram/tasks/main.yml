@@ -1,0 +1,20 @@
+- name: Add repository keys
+  apt_key:
+    url: "https://azlux.fr/repo.gpg.key"
+
+- name: Add repository
+  apt_repository:
+    repo: 'deb http://packages.azlux.fr/debian/ {{ ansible_distribution_release }} main'
+    filename: 'log2ram'
+
+- name: Install
+  apt:
+    name: log2ram
+
+- name: Configure
+  template:
+    src: log2ram.conf
+    dest: /etc/log2ram.conf
+  when: log2ram is defined
+  notify:
+    - restart

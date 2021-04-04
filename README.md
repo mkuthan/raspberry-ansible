@@ -13,24 +13,34 @@ Install 3rd party roles:
 ansible-galaxy install -r requirements.yml
 ```
 
+### Packages playbook
+
 Configure APT repositories, install packages and upgrade system:
+
 ```
 ansible-playbook packages.yml
 ```
 
-Install playbook:
+### Pimp my Pi playbooks
+
+Various playbooks to improve Raspberry setup:
 
 ```
-ansible-playbook «playbook»
+ansible-playbook pimpmypi.yml
 ```
 
-Available playbooks:
+Features:
+* common - missing pieces of vanilla Raspberry distribution
+* grafana - monitoring with [Grafana Cloud](https://grafana.com/products/cloud/) (free tier)
+* hdidle - spin-down disks, see [Github](https://github.com/adelolmo/hd-idle)
+* log2ram - move logs into RAM, see [Github](https://github.com/azlux/log2ram)
+* posfix - forward mails to real account (instead of Exim4)
+* smartmontools - monitor hard drives
 
-* common - missing pieces of vanilla distribution
+### Other playbooks
+  
 * samba - network attached storage
 * backup - to backup or not to backup, that’s no question
-* posfix - instead of exim, forward mails from raspberry to real account  
-* grafana - monitoring with Grafana Cloud, it's good to know the details over time
 * adguard - privacy all the time
 * raspotify, shairport - make my retired HiFi great again
 * kodi - the best smart tv ever

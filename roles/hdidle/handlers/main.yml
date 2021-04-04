@@ -1,0 +1,4 @@
+- name: restart
+  service:
+    name: hd-idle
+    state: restarted

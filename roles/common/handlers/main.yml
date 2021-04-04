@@ -1,4 +1,3 @@
----
 - name: reboot
   reboot:
     post_reboot_delay: 10
@@ -17,19 +16,4 @@
 - name: restart sshd
   service:
     name: sshd
-    state: restarted
-
-- name: restart smartmontools
-  service:
-    name: smartmontools
-    state: restarted
-
-- name: restart hdidle
-  service:
-    name: hd-idle
-    state: restarted
-
-- name: restart log2ram
-  service:
-    name: log2ram
     state: restarted

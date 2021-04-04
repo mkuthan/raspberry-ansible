@@ -1,0 +1,2 @@
+smartmontools_opts: "--interval={{ smartmontools.interval }}"
+smartmontools_device_scan: "-d removable -m root -M exec /usr/share/smartmontools/smartd-runner"
