@@ -8,3 +8,8 @@
   service:
     name: hd-idle
     state: restarted
+
+- name: restart log2ram
+  service:
+    name: log2ram
+    state: restarted

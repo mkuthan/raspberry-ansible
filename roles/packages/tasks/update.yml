@@ -2,5 +2,4 @@
   apt:
     name: "*"
     state: latest
-    default_release: buster-backports
     update_cache: yes

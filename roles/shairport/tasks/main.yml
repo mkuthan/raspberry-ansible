@@ -1,7 +1,6 @@
 - name: Install
   apt:
     name: shairport-sync
-    default_release: buster-backports
     update_cache: yes
 
 - name: Configure

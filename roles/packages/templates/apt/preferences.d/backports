@@ -1,0 +1,3 @@
+Package: *
+Pin: release o=Debian Backports,a=buster-backports,n=buster-backports,l=Debian Backports,c=main,b=armhf
+Pin-Priority: 600

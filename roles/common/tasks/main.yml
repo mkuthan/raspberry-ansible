@@ -28,7 +28,7 @@
   notify:
     - reboot
 
-- name: Configure hostname
+- name: Configure hostname '{{ hostname }}'
   hostname:
     name: "{{ hostname }}"
 
@@ -38,7 +38,7 @@
     regexp: '^127\.0\.1\.1'
     line: '127.0.1.1 {{ hostname }}'
 
-- name: Configure locale
+- name: Configure locale '{{ locale }}'
   locale_gen:
     name: "{{ locale }}"
 
@@ -46,7 +46,7 @@
   command: localectl set-locale LANG={{ locale }}
   changed_when: locale != lookup('env', 'LANG')
 
-- name: Configure timezone
+- name: Configure timezone '{{ timezone }}'
   timezone:
     name: "{{ timezone }}"
 
@@ -55,6 +55,22 @@
     src: dhcpcd.conf
     dest: "{{ dhcpcd_config_file }}"
   notify: restart dhcpcd
+
+- name: Limit journald size to '{{ journald_system_max_use }}'
+  lineinfile:
+    dest: "{{ journald_config_file }}"
+    regexp: "^#?SystemMaxUse="
+    line: "SystemMaxUse={{ journald_system_max_use }}"
+  notify:
+    - restart journald
+
+- name: Limit journald retention to '{{ journald_max_file_sec }}'
+  lineinfile:
+    dest: "{{ journald_config_file }}"
+    regexp: "^#?MaxFileSec="
+    line: "MaxFileSec={{ journald_max_file_sec }}"
+  notify:
+    - restart journald
 
 - name: Configure mount points
   mount:

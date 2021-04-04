@@ -11,6 +11,11 @@
     repo: deb http://deb.debian.org/debian buster-backports main
     filename: 'backports'
 
+- name: Change backports repository priority
+  template:
+    src: apt/preferences.d/backports
+    dest: /etc/apt/preferences.d/backports
+
 - name: Add docker repository keys
   apt_key:
     url: "https://download.docker.com/linux/{{ ansible_lsb.id | lower }}/gpg"
@@ -19,6 +24,15 @@
   apt_repository:
     repo: 'deb [arch=armhf] https://download.docker.com/linux/{{ ansible_lsb.id | lower }} {{ ansible_distribution_release }} stable'
     filename: 'docker'
+
+- name: Add log2ram repository keys
+  apt_key:
+    url: "https://azlux.fr/repo.gpg.key"
+
+- name: Add log2ram repository
+  apt_repository:
+    repo: 'deb http://packages.azlux.fr/debian/ {{ ansible_distribution_release }} main'
+    filename: 'log2ram'
 
 - name: Update apt cache
   apt:
