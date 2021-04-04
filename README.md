@@ -23,13 +23,14 @@ ansible-playbook packages.yml
 
 ### Pimp my Pi playbooks
 
-Various playbooks to improve Raspberry setup:
+Various playbooks to improve initial Raspberry Pi setup:
 
 ```
 ansible-playbook pimpmypi.yml
 ```
 
-Features:
+Roles:
+
 * common - missing pieces of vanilla Raspberry distribution
 * grafana - monitoring with [Grafana Cloud](https://grafana.com/products/cloud/) (free tier)
 * hdidle - spin-down disks, see [Github](https://github.com/adelolmo/hd-idle)
@@ -38,12 +39,12 @@ Features:
 * smartmontools - monitor hard drives
 
 ### Other playbooks
-  
-* samba - network attached storage
-* backup - to backup or not to backup, that’s no question
+
 * adguard - privacy all the time
-* raspotify, shairport - make my retired HiFi great again
+* backup - to backup or not to backup, that’s no question
 * kodi - the best smart tv ever
+* raspotify, shairport - make my retired HiFi great again
+* samba - my family disk for files and automated backups
 * transmission - the lightest BT daemon
 
 ## Manual setup
