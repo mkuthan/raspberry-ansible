@@ -2,5 +2,3 @@
   tags: ["install"]
 - import_tasks: update.yml
   tags: ["update"]
-- import_tasks: configure.yml
-  tags: ["configure"]

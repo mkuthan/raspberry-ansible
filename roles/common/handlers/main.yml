@@ -18,3 +18,18 @@
   service:
     name: sshd
     state: restarted
+
+- name: restart smartmontools
+  service:
+    name: smartmontools
+    state: restarted
+
+- name: restart hdidle
+  service:
+    name: hd-idle
+    state: restarted
+
+- name: restart log2ram
+  service:
+    name: log2ram
+    state: restarted

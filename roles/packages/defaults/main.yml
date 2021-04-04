@@ -7,6 +7,7 @@ default_packages:
   - hdparm
   - htop
   - iotop
+  - log2ram
   - lsof
   - mc
   - nmap
@@ -27,17 +28,3 @@ default_packages:
   - containerd.io
   - docker-compose
   - python3-docker
-  # log2ram
-  - log2ram
-
-# disk checks once a day
-smartmontools_interval: 86400
-
-# spin down disk after 10 minutes
-hdidle_idle_time: 600
-
-# increase size for ram folder
-log2ram_size: 100M
-
-# use rsync instead of cp
-log2ram_use_rsync: "true"

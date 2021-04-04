@@ -1,0 +1,8 @@
+- name: Configure locale '{{ locale }}'
+  locale_gen:
+    name: "{{ locale }}"
+  when: locale is defined
+
+- name: Update 'LANG'
+  command: localectl set-locale LANG={{ locale }}
+  changed_when: locale != lookup('env', 'LANG')

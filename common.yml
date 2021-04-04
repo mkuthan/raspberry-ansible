@@ -17,9 +17,34 @@
     locale: en_US.UTF-8
     timezone: Europe/Warsaw
 
-    ip_address: 192.168.1.2/24
-    gateway_address: 192.168.1.1
-    dns_addresses: [ 8.8.8.8, 8.8.4.4 ]
+    # configure static IP address
+    dhcpcd:
+      ip_address: 192.168.1.2/24
+      gateway_address: 192.168.1.1
+      dns_addresses: [ 8.8.8.8, 8.8.4.4 ]
+
+    # limit logs storage
+    journald:
+      system_max_use: 20M
+      max_file_sec: 1week
+
+    # configure Alsa for HiFiBerry
+    hifiberry:
+      alias: hifiberry
+      card: 2
+
+    # disk checks once a day
+    smartmontools:
+      interval: 86400
+
+    # spin down disk after 10 minutes
+    hdidle:
+      idle_time: 600
+
+    # move logs into memory
+    log2ram:
+      size: 100M
+      use_rsync: "true"
 
     mounts:
       - uuid: 24963094-c186-4ad5-a376-1efa26facc01

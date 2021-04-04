@@ -1,0 +1,7 @@
+- name: Configure hd-idle
+  template:
+    src: default/hd-idle
+    dest: /etc/default/hd-idle
+  when: hdidle is defined
+  notify:
+    - restart hdidle

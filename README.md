@@ -13,6 +13,11 @@ Install 3rd party roles:
 ansible-galaxy install -r requirements.yml
 ```
 
+Configure APT repositories, install packages and upgrade system:
+```
+ansible-playbook packages.yml
+```
+
 Install playbook:
 
 ```
@@ -22,14 +27,14 @@ ansible-playbook «playbook»
 Available playbooks:
 
 * common - missing pieces of vanilla distribution
-* packages - my linux toolbox
+* samba - network attached storage
+* backup - to backup or not to backup, that’s no question
+* posfix - instead of exim, forward mails from raspberry to real account  
+* grafana - monitoring with Grafana Cloud, it's good to know the details over time
 * adguard - privacy all the time
 * raspotify, shairport - make my retired HiFi great again
 * kodi - the best smart tv ever
 * transmission - the lightest BT daemon
-* samba - network attached storage
-* backup - to backup or not to backup, that’s no question
-* grafana - monitoring with Grafana Cloud, it's good to know the details over time
 
 ## Manual setup
 

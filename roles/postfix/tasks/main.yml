@@ -1,0 +1,46 @@
+- name: Check variables
+  assert:
+    that:
+      - postfix_relay_host is defined
+      - postfix_sasl_mail is defined
+      - postfix_sasl_password is defined
+    quiet: yes
+
+- name: Install
+  apt:
+    name: [ "postfix", "libsasl2-modules" ]
+    update_cache: yes
+
+- name: Setup SASL password
+  template:
+    src: sasl_password
+    dest: "{{ postfix_sasl_password_file }}"
+  register: postfix_sasl_passwd
+
+- name: Postmap SASL password
+  command: postmap {{ postfix_sasl_password_file }}
+  when: postfix_sasl_passwd.changed
+
+- name: Change SASL permissions
+  file:
+    dest: "{{ postfix_sasl_password_dir }}"
+    mode: "0640"
+    recurse: yes
+
+- name: Setup aliases
+  lineinfile:
+    dest: /etc/aliases
+    regexp: "^root:"
+    line: "root: {{ postfix_sasl_mail }}"
+  register: postfix_aliases
+
+- name: Update aliases
+  command: newaliases
+  when: postfix_aliases.changed
+
+- name: Configure
+  template:
+    src: main.cf
+    dest: /etc/postfix/main.cf
+  notify:
+    - restart

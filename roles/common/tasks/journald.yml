@@ -1,0 +1,17 @@
+- name: Limit journald size to '{{ journald.system_max_use }}'
+  lineinfile:
+    dest: "{{ journald_config_file }}"
+    regexp: "^#?SystemMaxUse="
+    line: "SystemMaxUse={{ journald.system_max_use }}"
+  when: journald is defined
+  notify:
+    - restart journald
+
+- name: Limit journald retention to '{{ journald.max_file_sec }}'
+  lineinfile:
+    dest: "{{ journald_config_file }}"
+    regexp: "^#?MaxFileSec="
+    line: "MaxFileSec={{ journald.max_file_sec }}"
+  when: journald is defined
+  notify:
+    - restart journald

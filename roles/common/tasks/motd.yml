@@ -1,0 +1,10 @@
+- name: Remove default motd
+  file:
+    path: /etc/motd
+    state: absent
+
+# https://github.com/gagle/raspberrypi-motd
+- name: Configure custom motd
+  copy:
+    src: motd.sh
+    dest: /etc/profile.d/motd.sh

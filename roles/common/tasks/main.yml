@@ -1,120 +1,26 @@
-- name: Set boot config params
-  lineinfile:
-    regexp: '^{{ item.name }}='
-    line: "{{ item.name }}={{ item.value }}"
-    path: "{{ boot_config_file }}"
-  loop: "{{ boot_config_params }}"
-  when: boot_config_params is defined
-  notify:
-    - reboot
-
-- name: Enable boot config params
-  lineinfile:
-    regexp: '^#?{{ item }}'
-    line: "{{ item }}"
-    path: "{{ boot_config_file }}"
-  loop: "{{ boot_config_enabled }}"
-  when: boot_config_enabled is defined
-  notify:
-    - reboot
-
-- name: Disable boot config params
-  lineinfile:
-    regexp: '^#?{{ item }}'
-    line: "#{{ item }}"
-    path: "{{ boot_config_file }}"
-  loop: "{{ boot_config_disabled }}"
-  when: boot_config_disabled is defined
-  notify:
-    - reboot
-
-- name: Configure hostname '{{ hostname }}'
-  hostname:
-    name: "{{ hostname }}"
-
-- name: Update hosts
-  lineinfile:
-    dest: /etc/hosts
-    regexp: '^127\.0\.1\.1'
-    line: '127.0.1.1 {{ hostname }}'
-
-- name: Configure locale '{{ locale }}'
-  locale_gen:
-    name: "{{ locale }}"
-
-- name: Update 'LANG'
-  command: localectl set-locale LANG={{ locale }}
-  changed_when: locale != lookup('env', 'LANG')
-
-- name: Configure timezone '{{ timezone }}'
-  timezone:
-    name: "{{ timezone }}"
-
-- name: Configure network
-  template:
-    src: dhcpcd.conf
-    dest: "{{ dhcpcd_config_file }}"
-  notify: restart dhcpcd
-
-- name: Limit journald size to '{{ journald_system_max_use }}'
-  lineinfile:
-    dest: "{{ journald_config_file }}"
-    regexp: "^#?SystemMaxUse="
-    line: "SystemMaxUse={{ journald_system_max_use }}"
-  notify:
-    - restart journald
-
-- name: Limit journald retention to '{{ journald_max_file_sec }}'
-  lineinfile:
-    dest: "{{ journald_config_file }}"
-    regexp: "^#?MaxFileSec="
-    line: "MaxFileSec={{ journald_max_file_sec }}"
-  notify:
-    - restart journald
-
-- name: Configure mount points
-  mount:
-    src: "UUID={{ item.uuid }}"
-    path: "{{ item.path }}"
-    fstype: "{{ item.fstype }}"
-    opts: "{{ item.opts }}"
-    state: mounted
-  with_items: "{{ mounts }}"
-  when: mounts is defined
-
-- name: Configure ALSA
-  template:
-    src: asound.conf
-    dest: "{{ asound_config_file }}"
-
-- name: Disable ubuntu login
-  user:
-    name: pi
-    password: '!'
-
-- name: Disable root login via SSH
-  lineinfile:
-    dest: "{{ sshd_config_file }}"
-    regexp: "^PermitRootLogin"
-    line: "PermitRootLogin no"
-  notify:
-    - restart sshd
-
-- name: Disable password login via SSH
-  lineinfile:
-    dest: "{{ sshd_config_file }}"
-    regexp: "^PasswordAuthentication"
-    line: "PasswordAuthentication no"
-  notify:
-    - restart sshd
-
-- name: Remove default motd
-  file:
-    path: /etc/motd
-    state: absent
-
-# https://github.com/gagle/raspberrypi-motd
-- name: Configure custom motd
-  copy:
-    src: motd.sh
-    dest: /etc/profile.d/motd.sh
+- import_tasks: boot.yml
+  tags: [ "boot" ]
+- import_tasks: hostname.yml
+  tags: [ "hostname" ]
+- import_tasks: locale.yml
+  tags: [ "locale" ]
+- import_tasks: timezone.yml
+  tags: [ "timezone" ]
+- import_tasks: security.yml
+  tags: [ "security" ]
+- import_tasks: dhcpcd.yml
+  tags: [ "dhcpcd" ]
+- import_tasks: journald.yml
+  tags: [ "journald" ]
+- import_tasks: hifiberry.yml
+  tags: [ "hifiberry" ]
+- import_tasks: mounts.yml
+  tags: [ "mounts" ]
+- import_tasks: motd.yml
+  tags: [ "motd" ]
+- import_tasks: log2ram.yml
+  tags: [ "log2ram" ]
+- import_tasks: smartmontools.yml
+  tags: [ "smartmontools" ]
+- import_tasks: hdidle.yml
+  tags: [ "hdidle" ]

@@ -1,0 +1,7 @@
+- name: Configure log2ram
+  template:
+    src: log2ram.conf
+    dest: /etc/log2ram.conf
+  when: log2ram is defined
+  notify:
+    - restart log2ram

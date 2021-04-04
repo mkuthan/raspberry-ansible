@@ -1,0 +1,5 @@
+- name: Configure hifiberry
+  template:
+    src: asound.conf
+    dest: "{{ asound_config_file }}"
+  when: hifiberry is defined

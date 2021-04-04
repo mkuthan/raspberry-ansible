@@ -13,7 +13,7 @@
 
 - name: Change backports repository priority
   template:
-    src: apt/preferences.d/backports
+    src: backports
     dest: /etc/apt/preferences.d/backports
 
 - name: Add docker repository keys

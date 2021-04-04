@@ -2,6 +2,7 @@
   template:
     src: default/smartmontools
     dest: /etc/default/smartmontools
+  when: smartmontools is defined
   notify:
     - restart smartmontools
 
@@ -9,19 +10,6 @@
   template:
     src: smartd.conf
     dest: /etc/smartd.conf
+  when: smartmontools is defined
   notify:
     - restart smartmontools
-
-- name: Configure hd-idle
-  template:
-    src: default/hd-idle
-    dest: /etc/default/hd-idle
-  notify:
-    - restart hdidle
-
-- name: Configure log2ram
-  template:
-    src: log2ram.conf
-    dest: /etc/log2ram.conf
-  notify:
-    - restart log2ram

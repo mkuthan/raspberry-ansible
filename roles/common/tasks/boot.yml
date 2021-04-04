@@ -1,0 +1,29 @@
+- name: Set boot config params
+  lineinfile:
+    regexp: '^{{ item.name }}='
+    line: "{{ item.name }}={{ item.value }}"
+    path: "{{ boot_config_file }}"
+  loop: "{{ boot_config_params }}"
+  when: boot_config_params is defined
+  notify:
+    - reboot
+
+- name: Enable boot config params
+  lineinfile:
+    regexp: '^#?{{ item }}'
+    line: "{{ item }}"
+    path: "{{ boot_config_file }}"
+  loop: "{{ boot_config_enabled }}"
+  when: boot_config_enabled is defined
+  notify:
+    - reboot
+
+- name: Disable boot config params
+  lineinfile:
+    regexp: '^#?{{ item }}'
+    line: "#{{ item }}"
+    path: "{{ boot_config_file }}"
+  loop: "{{ boot_config_disabled }}"
+  when: boot_config_disabled is defined
+  notify:
+    - reboot

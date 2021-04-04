@@ -1,4 +1,0 @@
----
-smartmontools_opts: "--interval={{ smartmontools_interval }}"
-smartmontools_device_scan: "-d removable -m root -M exec /usr/share/smartmontools/smartd-runner"
-hdile_opts: "-i {{ hdidle_idle_time }} -l /var/log/hd-idle.log"

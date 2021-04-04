@@ -1,0 +1,2 @@
+postfix_sasl_password_dir: /etc/postfix/sasl/
+postfix_sasl_password_file: "{{ postfix_sasl_password_dir }}/sasl_passwd"

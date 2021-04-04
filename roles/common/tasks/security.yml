@@ -1,0 +1,20 @@
+- name: Disable ubuntu login
+  user:
+    name: pi
+    password: '!'
+
+- name: Disable root login via SSH
+  lineinfile:
+    dest: "{{ sshd_config_file }}"
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+  notify:
+    - restart sshd
+
+- name: Disable password login via SSH
+  lineinfile:
+    dest: "{{ sshd_config_file }}"
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+  notify:
+    - restart sshd
