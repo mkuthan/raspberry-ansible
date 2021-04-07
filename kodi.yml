@@ -3,3 +3,43 @@
   roles:
     - role: kodi
 
+  vars:
+    kodi_sources:
+      - section: files
+        sources:
+          - name: fanfilm
+            path: http://fanfilm.github.io/
+          - name: blomqvist
+            path: https://mbebe.github.io/blomqvist/
+      - section: games
+      - section: music
+        sources:
+          - name: music
+            path: /media/disk1/public/photos
+      - section: pictures
+        sources:
+          - name: photos
+            path: /media/disk1/public/photos
+      - section: programs
+      - section: video
+        sources:
+          - name: video
+            path: /media/disk1/public/video
+
+    kodi_gui_settings:
+      - id: addons.unknownsources
+        value: "true"
+      - id: locale.audiolanguage
+        value: Polish
+      - id: locale.subtitlelanguage
+        value: Polish
+      - id: locale.country
+        value: Central Europe
+      - id: slideshow.staytime
+        value: 2
+      - id: subtitles.font
+        value: teletext.ttf
+      - id: subtitles.height
+        value: 30
+      - id: subtitles.style
+        value: 0

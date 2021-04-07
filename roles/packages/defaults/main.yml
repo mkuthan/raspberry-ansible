@@ -25,3 +25,5 @@ default_packages:
   - containerd.io
   - docker-compose
   - python3-docker
+  # other
+  - python3-lxml

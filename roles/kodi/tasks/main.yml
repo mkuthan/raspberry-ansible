@@ -27,6 +27,46 @@
       - "kodi-peripheral-joystick"
     update_cache: yes
 
+- name: Configure sources
+  template:
+    src: sources.xml.j2
+    dest: "{{ user.home }}/.kodi/userdata/sources.xml"
+  notify:
+    - restart
+
+- name: Configure GUI
+  xml:
+    file: "{{ user.home }}/.kodi/userdata/guisettings.xml"
+    xpath: "/settings/setting[@id='{{ item.id }}']"
+    value: "{{ item.value }}"
+  with_items: "{{ kodi_gui_settings }}"
+  notify:
+    - restart
+
+- name: Configure GUI (drop default attributes)
+  xml:
+    path: "/home/kodi/.kodi/userdata/guisettings.xml"
+    xpath: "/settings/setting[@id='{{ item.id }}']/@default"
+    state: absent
+  with_items: "{{ kodi_gui_settings }}"
+  notify:
+    - restart
+
+- name: Configure advanced settings
+  template:
+    src: advancedsettings.xml.j2
+    dest: "{{ user.home }}/.kodi/userdata/advancedsettings.xml"
+  notify:
+    - restart
+
+- name: Create log directory
+  file:
+    path: "{{ kodi_log_dir }}"
+    owner: "{{ kodi_user }}"
+    group: "{{ kodi_group }}"
+    mode: "0755"
+    state: directory
+
 - name: Install service
   template:
     src: kodi.service
