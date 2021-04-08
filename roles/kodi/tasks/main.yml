@@ -59,14 +59,6 @@
   notify:
     - restart
 
-- name: Create log directory
-  file:
-    path: "{{ kodi_log_dir }}"
-    owner: "{{ kodi_user }}"
-    group: "{{ kodi_group }}"
-    mode: "0755"
-    state: directory
-
 - name: Install service
   template:
     src: kodi.service
