@@ -19,6 +19,12 @@
     - "{{ backup_dest_sys_dir }}"
     - "{{ backup_dest_rdiff_dir }}"
 
+- name: Disable reporting success
+  lineinfile:
+    dest: "{{ backup_config_file }}"
+    regexp: "^reportsuccess"
+    line: "reportsuccess = no"
+
 - name: Configure
   template:
     src: "{{ item }}"
