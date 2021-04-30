@@ -3,3 +3,6 @@
   roles:
     - role: adguard
 
+  vars:
+    adguard_version: v0.106.1 # https://github.com/AdguardTeam/AdGuardHome/releases
+    adguard_http_port: 3000

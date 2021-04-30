@@ -18,6 +18,10 @@
     boot_config_params:
       - name: "gpu_mem"
         value: 256
+      - name: "hdmi_force_hotplug"
+        value: 1 # enable HDMI even if no monitor is detected
+      - name: "hdmi_drive"
+        value: 2 # always enable HDMI audio to preserve alsa device order
 
     boot_config_enabled:
       - dtoverlay=disable-wifi
@@ -42,7 +46,7 @@
     # configure Alsa for HiFiBerry
     hifiberry:
       alias: hifiberry
-      card: 2
+      card: 2 # 0: headphones, 1: hdmi, 2: hifiberry
 
     mounts:
       - uuid: 24963094-c186-4ad5-a376-1efa26facc01
