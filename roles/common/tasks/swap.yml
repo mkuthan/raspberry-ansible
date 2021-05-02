@@ -1,0 +1,19 @@
+- name: Check for dphys-swapfile
+  stat:
+    path: /etc/dphys-swapfile
+  register: dphys_swapfile
+
+- name: Disable swap
+  block:
+    - name: Turn off swap
+      command:
+        dphys-swapfile swapoff
+        dphys-swapfile uninstall
+    - name: Disable service
+      systemd:
+        name: dphys-swapfile
+        state: stopped
+        enabled: no
+        masked: yes
+  when:
+    - dphys_swapfile.stat.exists
