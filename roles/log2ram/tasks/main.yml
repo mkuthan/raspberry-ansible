@@ -1,4 +1,4 @@
-- name: Add repository keys
+- name: Add repository key
   apt_key:
     url: "https://azlux.fr/repo.gpg.key"
 

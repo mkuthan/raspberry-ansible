@@ -3,6 +3,8 @@
   roles:
     - role: common
       tags: [ "common" ]
+    - role: fluentd
+      tags: [ "fluentd" ]
     - role: grafana
       tags: [ "grafana" ]
     - role: hdidle
@@ -61,6 +63,9 @@
         path: /media/timemachine
         fstype: ext4
         opts: defaults,nofail,x-systemd.device-timeout=10s
+
+    fluentd:
+      version: 1.12.3
 
     grafana:
       username: 70924

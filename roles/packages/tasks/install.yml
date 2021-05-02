@@ -1,4 +1,4 @@
-- name: Add backports repository keys
+- name: Add backports repository key
   apt_key:
     keyserver: keyserver.ubuntu.com
     id: "{{ item }}"
@@ -16,7 +16,7 @@
     src: backports
     dest: /etc/apt/preferences.d/backports
 
-- name: Add docker repository keys
+- name: Add docker repository key
   apt_key:
     url: "https://download.docker.com/linux/{{ ansible_lsb.id | lower }}/gpg"
 

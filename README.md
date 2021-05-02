@@ -76,6 +76,7 @@ ansible-playbook pimpmypi.yml
 Roles:
 
 * common - missing pieces of vanilla Raspberry distribution
+* fluentd - TODO
 * grafana - monitoring with [Grafana Cloud](https://grafana.com/products/cloud/) (free tier)
 * hdidle - spin-down disks, see [Github](https://github.com/adelolmo/hd-idle)
 * log2ram - move logs into RAM, see [Github](https://github.com/azlux/log2ram)
