@@ -49,7 +49,7 @@
 
     samba_workgroup: BEKASOW
 
-    samba_log: /var/log/samba/log.%m
+    samba_log: /var/log/samba/log.samba
     samba_log_size: 500
     samba_log_level: 1
 
