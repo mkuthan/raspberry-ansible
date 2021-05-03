@@ -42,8 +42,8 @@
 
     # limit logs storage
     journald:
-      system_max_use: 20M
-      max_file_sec: 1week
+      system_max_use: 50M
+      max_file_sec: 1month
 
     # configure Alsa for HiFiBerry
     hifiberry:

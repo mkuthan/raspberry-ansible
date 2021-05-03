@@ -14,8 +14,6 @@
   tags: [ "dhcpcd" ]
 - import_tasks: journald.yml
   tags: [ "journald" ]
-- import_tasks: rsyslog.yml
-  tags: [ "rsyslog" ]
 - import_tasks: hifiberry.yml
   tags: [ "hifiberry" ]
 - import_tasks: mounts.yml
