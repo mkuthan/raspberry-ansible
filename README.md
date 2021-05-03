@@ -48,6 +48,10 @@ Copy key to Raspberry Pi:
 ssh-copy-id -i ~/.ssh/pi_rsa.pub pi
 ```
 
+### GCP Cloud Logging
+
+Create service account with roles: `roles/logging.logWriter` and `roles/monitoring.metricWriter`, 
+see [GCP Cloud Logging documentation](https://cloud.google.com/logging/docs/agent/logging/authorization) for more details.
 
 ## Ansible playbooks
 
@@ -76,7 +80,8 @@ ansible-playbook pimpmypi.yml
 Roles:
 
 * common - missing pieces of vanilla Raspberry distribution
-* fluentd - TODO
+* fluentbit - send systemd logs to [GCP Logging](https://cloud.google.com/logging) 
+  and/or [Loki](https://grafana.com/oss/loki/)
 * grafana - monitoring with [Grafana Cloud](https://grafana.com/products/cloud/) (free tier)
 * hdidle - spin-down disks, see [Github](https://github.com/adelolmo/hd-idle)
 * log2ram - move logs into RAM, see [Github](https://github.com/azlux/log2ram)

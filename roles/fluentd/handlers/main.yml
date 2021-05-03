@@ -1,4 +1,0 @@
-- name: restart
-  systemd:
-    name: fluentd
-    state: restarted

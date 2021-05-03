@@ -1,2 +1,0 @@
-fluentd:
-  plugins: [ "fluent-plugin-google-cloud" ]

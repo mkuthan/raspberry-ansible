@@ -1,0 +1,39 @@
+- name: Add apt key
+  apt_key:
+    url: http://packages.fluentbit.io/fluentbit.key
+
+- name: Add apt repository
+  apt_repository:
+    repo: deb https://packages.fluentbit.io/raspbian/buster buster main
+    filename: 'fluentbit'
+
+- name: Install
+  apt:
+    name: td-agent-bit
+
+- name: Create var directory
+  file:
+    path: "{{ fluentbit_var_dir }}"
+    mode: "0755"
+    state: directory
+
+- name: Copy stackdriver key
+  copy:
+    src: "{{ fluentbit.stackdriver.google_service_credentials }}"
+    dest: "{{ fluentbit_var_dir }}/stackdriver.key"
+    mode: "0400"
+  when: fluentbit.stackdriver is defined
+
+- name: Configure
+  template:
+    src: td-agent-bit.conf
+    dest: /etc/td-agent-bit/td-agent-bit.conf
+  notify:
+    - restart fluentbit
+
+- name: Enable service
+  systemd:
+    name: td-agent-bit
+    state: started
+    enabled: yes
+    masked: no

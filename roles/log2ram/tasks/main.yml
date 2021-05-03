@@ -2,7 +2,7 @@
   apt_key:
     url: "https://azlux.fr/repo.gpg.key"
 
-- name: Add repository
+- name: Add apt repository
   apt_repository:
     repo: 'deb http://packages.azlux.fr/debian/ {{ ansible_distribution_release }} main'
     filename: 'log2ram'

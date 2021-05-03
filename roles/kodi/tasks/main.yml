@@ -69,5 +69,6 @@
 - name: Enable service
   systemd:
     name: kodi
+    state: started
     enabled: yes
     masked: no
