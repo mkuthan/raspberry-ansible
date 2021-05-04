@@ -36,4 +36,3 @@
     name: td-agent-bit
     state: started
     enabled: yes
-    masked: no

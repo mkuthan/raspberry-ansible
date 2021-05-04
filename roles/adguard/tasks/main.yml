@@ -52,5 +52,4 @@
   systemd:
     name: adguard
     enabled: yes
-    masked: no
 

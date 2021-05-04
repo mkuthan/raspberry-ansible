@@ -1,4 +1,4 @@
-- name: Disable ubuntu login
+- name: Disable pi login
   user:
     name: pi
     password: '!'

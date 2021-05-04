@@ -71,4 +71,3 @@
     name: kodi
     state: started
     enabled: yes
-    masked: no
