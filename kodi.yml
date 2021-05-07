@@ -37,9 +37,11 @@
         value: Central Europe
       - id: slideshow.staytime
         value: 2
+      - id: subtitles.languages
+        value: Polish
       - id: subtitles.font
-        value: teletext.ttf
+        value: arial.ttf
       - id: subtitles.height
-        value: 30
+        value: 32
       - id: subtitles.style
-        value: 0
+        value: 1
