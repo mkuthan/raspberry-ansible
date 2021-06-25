@@ -8,7 +8,7 @@
       - section: files
         sources:
           - name: fanfilm
-            path: http://fanfilm.github.io/
+            path: https://fanfilm.github.io/
           - name: blomqvist
             path: https://mbebe.github.io/blomqvist/
       - section: games
@@ -35,13 +35,18 @@
         value: Polish
       - id: locale.country
         value: Central Europe
+      - id: powermanagement.displaysoff
+        value: 5 # 5 minutes
       - id: slideshow.staytime
         value: 2
       - id: subtitles.languages
         value: Polish
-      - id: subtitles.font
-        value: arial.ttf
       - id: subtitles.height
         value: 32
-      - id: subtitles.style
-        value: 1
+      # enable remote
+      - id: services.webserver
+        value: "true"
+      - id: services.webserverauthentication
+        value: "false"
+      - id: services.esallinterfaces
+        value: "true"

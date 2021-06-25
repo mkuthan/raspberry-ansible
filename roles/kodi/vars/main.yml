@@ -1,3 +1,8 @@
 ---
 kodi_user: kodi
 kodi_group: kodi
+
+#kodi_version: "2:18.7-1~buster"
+kodi_version: "2:19.1+dfsg2-1~bpo10+1"
+
+kodi_guisettings_file: ".kodi/userdata/guisettings.xml"

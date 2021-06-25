@@ -15,7 +15,8 @@
 - name: Install packages
   apt:
     name:
-      - "kodi"
+      - "kodi={{ kodi_version }}"
+      - "kodi-bin={{ kodi_version }}"
       - "kodi-audioencoder-flac"
       - "kodi-audioencoder-lame"
       - "kodi-audioencoder-vorbis"
@@ -27,6 +28,19 @@
       - "kodi-peripheral-joystick"
     update_cache: yes
 
+# https://github.com/xbmc/xbmc/issues/19738
+- name: Pin libcurl3-gnutls
+  apt:
+    name: libcurl3-gnutls=7.64.0-4+deb10u2
+
+- name: Create directory
+  file:
+    path: "{{ user.home }}/.kodi/userdata"
+    owner: "{{ kodi_user }}"
+    group: "{{ kodi_group }}"
+    mode: "0755"
+    state: directory
+
 - name: Configure sources
   template:
     src: sources.xml.j2
@@ -34,28 +48,35 @@
   notify:
     - restart
 
+- name: Configure advanced settings
+  template:
+    src: advancedsettings.xml.j2
+    dest: "{{ user.home }}/.kodi/userdata/advancedsettings.xml"
+  notify:
+    - restart
+
+- name: Check {{ user.home }}/{{ kodi_guisettings_file }}
+  stat:
+    path: "{{ user.home }}/{{ kodi_guisettings_file }}"
+  register: guisettings_file
+
 - name: Configure GUI
   xml:
-    file: "{{ user.home }}/.kodi/userdata/guisettings.xml"
+    file: "{{ user.home }}/{{ kodi_guisettings_file }}"
     xpath: "/settings/setting[@id='{{ item.id }}']"
     value: "{{ item.value }}"
   with_items: "{{ kodi_gui_settings }}"
+  when: guisettings_file.stat.exists
   notify:
     - restart
 
 - name: Configure GUI (drop default attributes)
   xml:
-    path: "/home/kodi/.kodi/userdata/guisettings.xml"
+    path: "{{ user.home }}/{{ kodi_guisettings_file }}"
     xpath: "/settings/setting[@id='{{ item.id }}']/@default"
     state: absent
   with_items: "{{ kodi_gui_settings }}"
-  notify:
-    - restart
-
-- name: Configure advanced settings
-  template:
-    src: advancedsettings.xml.j2
-    dest: "{{ user.home }}/.kodi/userdata/advancedsettings.xml"
+  when: guisettings_file.stat.exists
   notify:
     - restart
 
