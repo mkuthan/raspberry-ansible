@@ -1,4 +1,3 @@
----
 transmission_block_list: http://john.bitsurge.net/public/biglist.p2p.gz
 transmission_rpc_port: 9091
 transmission_peer_port: 51413

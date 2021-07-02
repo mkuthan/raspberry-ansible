@@ -1,4 +1,3 @@
----
 backup_config_file: /etc/backupninja.conf
 backup_config_dir: /etc/backup.d
 backup_dest_sys_dir: "{{ backup_dest_dir }}/sys"

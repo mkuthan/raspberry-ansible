@@ -1,4 +1,3 @@
----
 shairport_device_name: shairport
 shairport_alsa_output_device: default
 shairport_alsa_mixer_control_name: PCM
