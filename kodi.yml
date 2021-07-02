@@ -7,14 +7,14 @@
       - section: files
         sources:
           - name: fanfilm
-            path: http://fanfilm.github.io/
+            path: https://fanfilm.github.io/
           - name: blomqvist
             path: https://mbebe.github.io/blomqvist/
       - section: games
       - section: music
         sources:
           - name: music
-            path: /media/disk1/public/photos
+            path: /media/disk1/public/music
       - section: pictures
         sources:
           - name: photos
@@ -28,19 +28,26 @@
     kodi_gui_settings:
       - id: addons.unknownsources
         value: "true"
+      - id: audiooutput.passthroughdevice
+        value: PI:HDMI
+      - id: audiooutput.volumesteps
+        value: 50
       - id: locale.audiolanguage
         value: Polish
       - id: locale.subtitlelanguage
         value: Polish
       - id: locale.country
         value: Central Europe
+      - id: powermanagement.displaysoff
+        value: 5 # 5 minutes
       - id: slideshow.staytime
         value: 2
-      - id: subtitles.languages
-        value: Polish
-      - id: subtitles.font
-        value: arial.ttf
       - id: subtitles.height
         value: 32
-      - id: subtitles.style
-        value: 1
+      - id: subtitles.languages
+        value: Polish
+      # enable remote
+      - id: services.webserver
+        value: "true"
+      - id: services.esallinterfaces
+        value: "true"
