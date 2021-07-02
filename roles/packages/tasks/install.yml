@@ -8,13 +8,8 @@
 
 - name: Add backports repository
   apt_repository:
-    repo: deb http://deb.debian.org/debian buster-backports main
-    filename: 'backports'
-
-- name: Change backports repository priority
-  template:
-    src: backports
-    dest: /etc/apt/preferences.d/backports
+    repo: "deb http://deb.debian.org/debian {{ ansible_distribution_release }}-backports main"
+    filename: "backports"
 
 - name: Add docker repository key
   apt_key:
@@ -22,8 +17,8 @@
 
 - name: Add docker repository
   apt_repository:
-    repo: 'deb [arch=armhf] https://download.docker.com/linux/{{ ansible_lsb.id | lower }} {{ ansible_distribution_release }} stable'
-    filename: 'docker'
+    repo: "deb [arch=armhf] https://download.docker.com/linux/{{ ansible_lsb.id | lower }} {{ ansible_distribution_release }} stable"
+    filename: "docker"
 
 - name: Update apt cache
   apt:

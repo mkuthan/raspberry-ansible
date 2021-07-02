@@ -4,8 +4,8 @@
 
 - name: Add apt repository
   apt_repository:
-    repo: deb https://packages.fluentbit.io/raspbian/buster buster main
-    filename: 'fluentbit'
+    repo: "deb https://packages.fluentbit.io/{{ ansible_lsb.id | lower }}/{{ ansible_distribution_release }} {{ ansible_distribution_release }} main"
+    filename: "fluentbit"
 
 - name: Install
   apt:
