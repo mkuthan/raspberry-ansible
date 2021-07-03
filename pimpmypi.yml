@@ -25,9 +25,10 @@
         value: 2 # always enable HDMI audio to preserve alsa device order
 
     boot_config_enabled:
-      - dtoverlay=disable-wifi
       - dtoverlay=vc4-fkms-v3d
+      - dtoverlay=rpivid-v4l2
       - dtoverlay=hifiberry-dacplus
+      - dtoverlay=disable-wifi
 
     hostname: salon
     locale: en_US.UTF-8
