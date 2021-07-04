@@ -11,21 +11,21 @@
     system: true
   register: user
 
-- name: Install packages
-  apt:
-    name:
-      - "kodi"
-      - "kodi-bin"
-      - "kodi-audioencoder-flac"
-      - "kodi-audioencoder-lame"
-      - "kodi-audioencoder-vorbis"
-      - "kodi-audioencoder-wav"
-      - "kodi-imagedecoder-heif"
-      - "kodi-imagedecoder-raw"
-      - "kodi-inputstream-adaptive"
-      - "kodi-inputstream-rtmp"
-      - "kodi-peripheral-joystick"
-    update_cache: yes
+#- name: Install packages
+#  apt:
+#    name:
+#      - "kodi"
+#      - "kodi-bin"
+#      - "kodi-audioencoder-flac"
+#      - "kodi-audioencoder-lame"
+#      - "kodi-audioencoder-vorbis"
+#      - "kodi-audioencoder-wav"
+#      - "kodi-imagedecoder-heif"
+#      - "kodi-imagedecoder-raw"
+#      - "kodi-inputstream-adaptive"
+#      - "kodi-inputstream-rtmp"
+#      - "kodi-peripheral-joystick"
+#    update_cache: yes
 
 - name: Create directory
   file:

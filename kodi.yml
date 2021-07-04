@@ -49,5 +49,7 @@
       # enable remote
       - id: services.webserver
         value: "true"
+      - id: services.webserverauthentication
+        value: "false"
       - id: services.esallinterfaces
         value: "true"

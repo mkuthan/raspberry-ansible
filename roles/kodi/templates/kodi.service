@@ -6,7 +6,7 @@ Wants=network-online.target
 [Service]
 User={{ kodi_user }}
 Group={{ kodi_group }}
-ExecStart=/usr/bin/kodi-standalone
+ExecStart=/usr/local/bin/kodi-standalone
 Restart=always
 
 [Install]
