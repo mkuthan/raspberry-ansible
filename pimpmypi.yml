@@ -23,6 +23,8 @@
         value: 1 # enable HDMI even if no monitor is detected
       - name: "hdmi_drive"
         value: 2 # always enable HDMI audio to preserve alsa device order
+      - name: "disable_overscan"
+        value: 1 # disable black border if display can output without overscan
 
     boot_config_enabled:
       - dtoverlay=vc4-fkms-v3d
