@@ -3,5 +3,61 @@
     - role: adguard
 
   vars:
-    adguard_version: v0.106.3 # https://github.com/AdguardTeam/AdGuardHome/releases
+    # https://github.com/AdguardTeam/AdGuardHome/releases
+    adguard_version: v0.106.3
+
+    # https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration
     adguard_http_port: 3000
+    adguard_username: adguard
+    adguard_password: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      31333434663137326434363661353534623533346139366430306337326233353232643337623166
+      3861306666653336366634363062353438336134643164620a326565646232633838303363333864
+      61346533366365633338306331333862303330333434353262623934353734383762636564363231
+      6438613166373762640a613037656564386136313535366433346564623838333233653933363832
+      3432
+    adguard_password_salt: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      65333132656534373634373331316130633430353739656263613632383363643166303739396461
+      6637306332663266616261393262313335653230363138300a643431316230636465323834303833
+      34626433353464656235623637366164663538643963366635343239336639643338316432653830
+      3235353139393437320a363964356239353930303532656539353236643261376561373835306531
+      30643133353762616565376239646234353036613865333830346264626632393330
+    adguard_blocked_services:
+      - tiktok
+      - steam
+      - telegram
+      - 9gag
+      - cloudflare
+      - dailymotion
+      - discord
+      - disneyplus
+      - epic_games
+      - hulu
+      - instagram
+      - mail_ru
+      - netflix
+      - ok
+      - origin
+      - pinterest
+      - qq
+      - snapchat
+      - tinder
+      - viber
+      - vk
+      - wechat
+      - weibo
+    adguard_filters:
+      - name: AdGuard DNS filter
+        url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+      - name: Polish filters for Pi hole
+        url: https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/hostfile.txt
+      - name: oisd
+        url: https://abp.oisd.nl/
+    adguard_user_rules:
+      - "||youtube.com^$client=''192.168.1.105''"
+      - "||cda.pl^$client=''192.168.1.105''"
+      - "@@||ajax.cloudflare.com^"
+      - "@@||cdn.cloudflare.net^"
+      - "@@||thepiratebay.org^"
+
