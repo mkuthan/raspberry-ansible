@@ -7,25 +7,9 @@
   user:
     name: "{{ kodi_user }}"
     group: "{{ kodi_group }}"
-    groups: [ "audio", "input", "video" ]
+    groups: [ "audio", "input", "video", "render" ]
     system: true
   register: user
-
-#- name: Install packages
-#  apt:
-#    name:
-#      - "kodi"
-#      - "kodi-bin"
-#      - "kodi-audioencoder-flac"
-#      - "kodi-audioencoder-lame"
-#      - "kodi-audioencoder-vorbis"
-#      - "kodi-audioencoder-wav"
-#      - "kodi-imagedecoder-heif"
-#      - "kodi-imagedecoder-raw"
-#      - "kodi-inputstream-adaptive"
-#      - "kodi-inputstream-rtmp"
-#      - "kodi-peripheral-joystick"
-#    update_cache: yes
 
 - name: Create directory
   file:
@@ -35,19 +19,48 @@
     mode: "0755"
     state: directory
 
+- name: Check for binary compiled from sources
+  stat:
+    path: "/usr/local/bin/kodi"
+  register: kodi_file
+
+- name: Install packages
+  apt:
+    name:
+      - "kodi"
+      - "kodi-bin"
+      - "kodi-audioencoder-flac"
+      - "kodi-audioencoder-lame"
+      - "kodi-audioencoder-vorbis"
+      - "kodi-audioencoder-wav"
+      - "kodi-imagedecoder-heif"
+      - "kodi-imagedecoder-raw"
+      - "kodi-inputstream-adaptive"
+      - "kodi-inputstream-rtmp"
+    update_cache: yes
+  when: kodi_file.stat.exists == False
+
+- name: Install service
+  template:
+    src: kodi.service
+    dest: /etc/systemd/system/kodi.service
+  notify:
+    - restart
+
+- name: Stop service
+  systemd:
+    name: kodi
+    state: stopped
+
 - name: Configure sources
   template:
     src: sources.xml.j2
     dest: "{{ user.home }}/.kodi/userdata/sources.xml"
-  notify:
-    - restart
 
 - name: Configure advanced settings
   template:
     src: advancedsettings.xml.j2
     dest: "{{ user.home }}/.kodi/userdata/advancedsettings.xml"
-  notify:
-    - restart
 
 - name: Check guisettings.xml
   stat:
@@ -61,8 +74,6 @@
     value: "{{ item.value }}"
   with_items: "{{ kodi_gui_settings }}"
   when: guisettings_file.stat.exists
-  notify:
-    - restart
 
 - name: Configure guisettings.xml (drop default attributes)
   xml:
@@ -71,18 +82,8 @@
     state: absent
   with_items: "{{ kodi_gui_settings }}"
   when: guisettings_file.stat.exists
-  notify:
-    - restart
 
-- name: Install service
-  template:
-    src: kodi.service
-    dest: /etc/systemd/system/kodi.service
-  notify:
-    - restart
-
-- name: Enable service
+- name: Start service
   systemd:
     name: kodi
     state: started
-    enabled: yes

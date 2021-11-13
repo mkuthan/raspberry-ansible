@@ -1,23 +1,10 @@
-- name: Add backports repository key
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: "{{ item }}"
-  with_items:
-    - 04EE7237B7D453EC
-    - 648ACFD622F3D138
-
-- name: Add backports repository
-  apt_repository:
-    repo: "deb http://deb.debian.org/debian {{ ansible_distribution_release }}-backports main"
-    filename: "backports"
-
 - name: Add docker repository key
   apt_key:
     url: "https://download.docker.com/linux/{{ ansible_lsb.id | lower }}/gpg"
 
 - name: Add docker repository
   apt_repository:
-    repo: "deb [arch=armhf] https://download.docker.com/linux/{{ ansible_lsb.id | lower }} {{ ansible_distribution_release }} stable"
+    repo: "deb https://download.docker.com/linux/{{ ansible_lsb.id | lower }} {{ ansible_distribution_release }} stable"
     filename: "docker"
 
 - name: Update apt cache

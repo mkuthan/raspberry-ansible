@@ -4,12 +4,12 @@
 
 - name: Add apt repository
   apt_repository:
-    repo: deb https://dtcooper.github.io/raspotify raspotify main
+    repo: deb [arch=armhf] https://dtcooper.github.io/raspotify raspotify main
     filename: 'raspotify'
 
 - name: Install
   apt:
-    name: raspotify
+    name: raspotify:armhf
     update_cache: yes
 
 - name: Configure device name

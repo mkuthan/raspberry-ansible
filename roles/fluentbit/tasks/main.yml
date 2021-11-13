@@ -29,7 +29,7 @@
     src: td-agent-bit.conf
     dest: /etc/td-agent-bit/td-agent-bit.conf
   notify:
-    - restart fluentbit
+    - restart
 
 - name: Enable service
   systemd:

@@ -2,8 +2,9 @@
   roles:
     - role: common
       tags: [ "common" ]
-    - role: fluentbit
-      tags: [ "fluentbit" ]
+#  https://github.com/fluent/fluent-bit/issues/4298
+#    - role: fluentbit
+#      tags: [ "fluentbit" ]
     - role: grafana
       tags: [ "grafana" ]
     - role: hdidle
@@ -17,18 +18,17 @@
 
   vars:
     boot_config_params:
-      - name: "gpu_mem"
-        value: 256
       - name: "hdmi_force_hotplug"
         value: 1 # enable HDMI even if no monitor is detected
       - name: "hdmi_drive"
         value: 2 # always enable HDMI audio to preserve alsa device order
+      - name: "hdmi_ignore_cec_init"
+        value: 1 # disable a CEC-enabled TV from coming out of standby after boot
       - name: "disable_overscan"
         value: 1 # disable black border if display can output without overscan
 
     boot_config_enabled:
-      - dtoverlay=vc4-fkms-v3d
-      - dtoverlay=rpivid-v4l2
+      - dtoverlay=vc4-kms-v3d
       - dtoverlay=hifiberry-dacplus
       - dtoverlay=disable-wifi
 
@@ -50,7 +50,7 @@
     # configure Alsa for HiFiBerry
     hifiberry:
       alias: hifiberry
-      card: 2 # 0: headphones, 1: hdmi, 2: hifiberry
+      card: 3 # 0: headphones, 1: hdmi1, 2: hdmi2, 3: hifiberry
 
     mounts:
       - uuid: 24963094-c186-4ad5-a376-1efa26facc01

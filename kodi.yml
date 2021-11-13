@@ -25,11 +25,19 @@
           - name: video
             path: /media/disk1/public/video
 
+    kodi_advanced_settins:
+      # https://kodi.wiki/view/Log_file/Advanced
+      log_level: 0
+      extra_logging: false
+      extra_log_level: 16384 # CEC
+
     kodi_gui_settings:
       - id: addons.unknownsources
         value: "true"
+      - id: audiooutput.audiodevice
+        value: ALSA:hdmi:CARD=vc4hdmi0,DEV=0
       - id: audiooutput.passthroughdevice
-        value: PI:HDMI
+        value: ALSA:hdmi:CARD=vc4hdmi0,DEV=0
       - id: audiooutput.volumesteps
         value: 50
       - id: locale.audiolanguage
@@ -40,6 +48,10 @@
         value: Central Europe
       - id: powermanagement.displaysoff
         value: 5 # 5 minutes
+      - id: screensaver.mode
+        value: screensaver.xbmc.builtin.dim
+      - id: screensaver.time
+        value: 1 # 1 minute
       - id: slideshow.staytime
         value: 2
       - id: subtitles.height
