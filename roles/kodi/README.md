@@ -7,13 +7,7 @@ References: https://github.com/xbmc/xbmc/blob/master/docs/README.Linux.md
 Install build dependencies:
 
 ```shell
-apt install cmake clang clang-format clang-tidy default-jre swig ccache \
-libasound-dev libavahi-client-dev libbluetooth-dev libbluray-dev libcec-dev libiso9660-dev liblcms2-dev \
-python3-dev libxslt1-dev libudev-dev libsmbclient-dev libplist-dev libmicrohttpd-dev  liblirc-dev \
-libnfs-dev libass-dev libcurl4-openssl-dev libdav1d-dev libsndio-dev libcdio++-dev libtag1-dev \
-libflatbuffers-dev libfmt-dev libfstrcmp-dev liblzo2-dev libssl-dev libspdlog-dev libsqlite3-dev \
-libtinyxml-dev libegl1-mesa-dev libgbm-dev libdrm-dev libinput-dev libxkbcommon-dev libgif-dev \
-libjpeg-dev libcap-dev libavcodec-dev libunistring-dev
+apt-get build-dep kodi
 ```
 
 ## Kodi bin

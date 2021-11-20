@@ -1,3 +1,3 @@
 raspotify_config_file: /etc/default/raspotify
 raspotify_volume_args: --enable-volume-normalisation --volume-ctrl linear --initial-volume {{ raspotify_initial_volume }}
-raspotify_backend_args: --backend alsa --mixer=alsa --mixer-card {{ raspotify_alsa_device }} --device {{ raspotify_alsa_device }} --mixer-name {{ raspotify_alsa_mixer_name }}
+raspotify_backend_args: --backend alsa --mixer=alsa --device {{ raspotify_alsa_mixer_device }} --alsa-mixer-device {{ raspotify_alsa_mixer_device }} --alsa-mixer-control {{ raspotify_alsa_mixer_control }}

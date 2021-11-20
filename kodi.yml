@@ -4,12 +4,6 @@
 
   vars:
     kodi_sources:
-      - section: files
-        sources:
-          - name: fanfilm
-            path: https://fanfilm.github.io/
-          - name: blomqvist
-            path: https://mbebe.github.io/blomqvist/
       - section: games
       - section: music
         sources:

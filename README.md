@@ -17,7 +17,7 @@ My Raspberry Pi installation at home.
 
 ### Install image
 
-The repository is tested against Raspberry Pi OS Lite 64 bit (Debian 11 "Bullseye").
+The repository is tested against Raspberry Pi OS Lite 32 bit (Debian 11 "Bullseye").
 
 1. Install image on SD card
 1. Append `ip=«IP»` into `cmdline.txt`

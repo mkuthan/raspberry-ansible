@@ -9,7 +9,7 @@
 
 - name: Install
   apt:
-    name: raspotify:armhf
+    name: raspotify
     update_cache: yes
 
 - name: Configure device name
