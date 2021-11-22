@@ -87,3 +87,5 @@
   systemd:
     name: kodi
     state: started
+    enabled: yes
+
