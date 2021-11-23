@@ -52,7 +52,12 @@
         value: 32
       - id: subtitles.languages
         value: Polish
-      # enable remote
+      # enable hardware decoder
+      - id: videoplayer.useprimedecoder
+        value: "true"
+      - id: videoplayer.useprimerenderer
+        value: 0
+      # enable remote access
       - id: services.webserver
         value: "true"
       - id: services.webserverauthentication

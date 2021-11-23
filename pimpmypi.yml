@@ -18,19 +18,29 @@
 
   vars:
     boot_config_params:
-      - name: "hdmi_force_hotplug"
-        value: 1 # enable HDMI even if no monitor is detected
+      - name: "arm_boost"
+        value: 1 # turbo-mode clock to be increased from 1.5GHz to 1.8GHz
+      - name: "arm_64bit"
+        value: 1 # 64-bit kernel
       - name: "hdmi_drive"
         value: 2 # always enable HDMI audio to preserve alsa device order
+      - name: "hdmi_force_hotplug"
+        value: 1 # enable HDMI even if no monitor is detected
       - name: "hdmi_ignore_cec_init"
         value: 1 # disable a CEC-enabled TV from coming out of standby after boot
+      - name: "disable_fw_kms_setup"
+        value: 1 # KMS will then parse the EDID instead of firmware
       - name: "disable_overscan"
         value: 1 # disable black border if display can output without overscan
+      - name: "disable_splash"
+        value: 1 # rainbow splash screen
 
     boot_config_enabled:
       - dtoverlay=vc4-kms-v3d
+      - dtoverlay=rpivid-v4l2 # enable hardware hevc decoding
       - dtoverlay=hifiberry-dacplus
       - dtoverlay=disable-wifi
+      - dtoverlay=disable-bt
 
     hostname: salon
     locale: en_US.UTF-8
