@@ -1,3 +1,13 @@
+- name: Check for binary
+  stat:
+    path: "{{ kodi_bin }}"
+  register: kodi_bin_file
+
+- name: Fail if Kodi is not installed
+  fail:
+    msg: Missing Kodi binary {{ kodi_bin }}
+  when: not kodi_bin_file.stat.exists
+
 - name: Create group
   group:
     name: "{{ kodi_group }}"
@@ -11,35 +21,6 @@
     system: true
   register: user
 
-- name: Create directory
-  file:
-    path: "{{ user.home }}/.kodi/userdata"
-    owner: "{{ kodi_user }}"
-    group: "{{ kodi_group }}"
-    mode: "0755"
-    state: directory
-
-- name: Check for binary compiled from sources
-  stat:
-    path: "/usr/local/bin/kodi"
-  register: kodi_file
-
-- name: Install packages
-  apt:
-    name:
-      - "kodi"
-      - "kodi-bin"
-      - "kodi-audioencoder-flac"
-      - "kodi-audioencoder-lame"
-      - "kodi-audioencoder-vorbis"
-      - "kodi-audioencoder-wav"
-      - "kodi-imagedecoder-heif"
-      - "kodi-imagedecoder-raw"
-      - "kodi-inputstream-adaptive"
-      - "kodi-inputstream-rtmp"
-    update_cache: yes
-  when: kodi_file.stat.exists == False
-
 - name: Install service
   template:
     src: kodi.service
@@ -47,7 +28,29 @@
   notify:
     - restart
 
-- name: Stop service
+- name: Check for initial configuration
+  stat:
+    path: "{{ user.home }}/.kodi"
+  register: kodi_configuration_directory
+
+- name: Create initial configuration
+  systemd:
+    name: kodi
+    state: started
+  when: not kodi_configuration_directory.stat.exists
+
+- name: Create directories
+  file:
+    path: "{{ user.home }}/.kodi/{{ item }}"
+    owner: "{{ kodi_user }}"
+    group: "{{ kodi_group }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - "{{ kodi_userdata_dir }}"
+    - "{{ kodi_subtitles_dir }}"
+
+- name: Stop service before configuration
   systemd:
     name: kodi
     state: stopped
@@ -55,37 +58,29 @@
 - name: Configure sources
   template:
     src: sources.xml.j2
-    dest: "{{ user.home }}/.kodi/userdata/sources.xml"
+    dest: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/sources.xml"
 
 - name: Configure advanced settings
   template:
     src: advancedsettings.xml.j2
-    dest: "{{ user.home }}/.kodi/userdata/advancedsettings.xml"
-
-- name: Check guisettings.xml
-  stat:
-    path: "{{ user.home }}/.kodi/userdata/guisettings.xml"
-  register: guisettings_file
+    dest: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/advancedsettings.xml"
 
 - name: Configure guisettings.xml
   xml:
-    file: "{{ user.home }}/.kodi/userdata/guisettings.xml"
+    file: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
     xpath: "/settings/setting[@id='{{ item.id }}']"
     value: "{{ item.value }}"
-  with_items: "{{ kodi_gui_settings }}"
-  when: guisettings_file.stat.exists
+  with_items: "{{ kodi_gui_settings | zip(kodi_subtitles_gui_settings) }}"
 
 - name: Configure guisettings.xml (drop default attributes)
   xml:
-    path: "/home/kodi/.kodi/userdata/guisettings.xml"
+    path: "/home/kodi/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
     xpath: "/settings/setting[@id='{{ item.id }}']/@default"
     state: absent
-  with_items: "{{ kodi_gui_settings }}"
-  when: guisettings_file.stat.exists
+  with_items: "{{ kodi_gui_settings | zip(kodi_subtitles_gui_settings) }}"
 
-- name: Start service
+- name: Start service after configuration
   systemd:
     name: kodi
     state: started
     enabled: yes
-

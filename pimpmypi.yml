@@ -29,11 +29,11 @@
       - name: "hdmi_ignore_cec_init"
         value: 1 # disable a CEC-enabled TV from coming out of standby after boot
       - name: "disable_fw_kms_setup"
-        value: 1 # KMS will then parse the EDID instead of firmware
+        value: 1 # KMS will parse the EDID instead of firmware
       - name: "disable_overscan"
         value: 1 # disable black border if display can output without overscan
       - name: "disable_splash"
-        value: 1 # rainbow splash screen
+        value: 1 # disable rainbow splash screen
 
     boot_config_enabled:
       - dtoverlay=vc4-kms-v3d

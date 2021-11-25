@@ -3,6 +3,8 @@
     - role: kodi
 
   vars:
+    kodi_bin: /usr/local/bin/kodi
+
     kodi_sources:
       - section: games
       - section: music
@@ -48,15 +50,19 @@
         value: 1 # 1 minute
       - id: slideshow.staytime
         value: 2
+      - id: subtitles.charset
+        value: CP1250
       - id: subtitles.height
         value: 32
       - id: subtitles.languages
         value: Polish
+      - id: videoplayer.adjustrefreshrate
+        value: 2 # on start/stop
       # enable hardware decoder
       - id: videoplayer.useprimedecoder
         value: "true"
       - id: videoplayer.useprimerenderer
-        value: 0
+        value: 0 # direct to plane
       # enable remote access
       - id: services.webserver
         value: "true"
