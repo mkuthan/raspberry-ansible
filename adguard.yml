@@ -8,6 +8,7 @@
 
     # https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration
     adguard_http_port: 3000
+
     adguard_username: adguard
     adguard_password: !vault |
       $ANSIBLE_VAULT;1.1;AES256
@@ -23,30 +24,7 @@
       34626433353464656235623637366164663538643963366635343239336639643338316432653830
       3235353139393437320a363964356239353930303532656539353236643261376561373835306531
       30643133353762616565376239646234353036613865333830346264626632393330
-    adguard_blocked_services:
-      - tiktok
-      - steam
-      - telegram
-      - 9gag
-      - cloudflare
-      - dailymotion
-      - discord
-      - disneyplus
-      - epic_games
-      - hulu
-      - instagram
-      - mail_ru
-      - netflix
-      - ok
-      - origin
-      - pinterest
-      - qq
-      - snapchat
-      - tinder
-      - viber
-      - vk
-      - wechat
-      - weibo
+
     adguard_filters:
       - name: AdGuard DNS filter
         url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
@@ -54,11 +32,17 @@
         url: https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/hostfile.txt
       - name: oisd
         url: https://abp.oisd.nl/
+
+    adguard_clients:
+      - name: Maciek_laptop
+        id: 192.168.1.111
+      - name: Maciek_tablet
+        id: 192.168.1.105
+
     adguard_user_rules:
-      - "||youtube.com^$client=''192.168.1.105''"
-      - "||cda.pl^$client=''192.168.1.105''"
-      - "||poki.pl^$client=''192.168.1.105''"
+      - "||cda.pl^$client=''Maciek_tablet''"
+      - "||poki.pl^$client=''Maciek_tablet''"
+      - "||youtube.com^$client=''Maciek_tablet''"
       - "@@||ajax.cloudflare.com^"
       - "@@||cdn.cloudflare.net^"
       - "@@||thepiratebay.org^"
-

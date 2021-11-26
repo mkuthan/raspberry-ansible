@@ -1,5 +1,10 @@
 # Kodi build
 
+Kodi in the distribution is usually outdated, it's better to compile and install fresh version from sources.
+The compilation with all binary addons takes ~ 4 hours.
+
+This setup supports hardware acceleration for H.264 and H.265/HEVC (8bit/10bit).
+
 References: https://github.com/xbmc/xbmc/blob/master/docs/README.Linux.md
 
 ## Build dependencies

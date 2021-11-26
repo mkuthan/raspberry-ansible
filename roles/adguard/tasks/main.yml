@@ -47,15 +47,17 @@
   notify:
     - restart
 
-- name: Configure service
-  template:
-    src: AdGuardHome.yaml
-    dest: "{{ user.home }}/conf/AdGuardHome.yaml"
-  notify:
-    - restart
-
 - name: Enable service
   systemd:
     name: adguard
     enabled: yes
+  notify:
+    - restart
+
+- name: Configure service
+  template:
+    src: AdGuardHome.yaml.j2
+    dest: "{{ user.home }}/conf/AdGuardHome.yaml"
+  notify:
+    - restart
 

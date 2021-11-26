@@ -21,7 +21,7 @@
       - name: "arm_boost"
         value: 1 # turbo-mode clock to be increased from 1.5GHz to 1.8GHz
       - name: "arm_64bit"
-        value: 1 # 64-bit kernel
+        value: 1 # 64-bit kernel (for performance) with 32-bit user space (for compatibility)
       - name: "hdmi_drive"
         value: 2 # always enable HDMI audio to preserve alsa device order
       - name: "hdmi_force_hotplug"
@@ -37,7 +37,7 @@
 
     boot_config_enabled:
       - dtoverlay=vc4-kms-v3d
-      - dtoverlay=rpivid-v4l2 # enable hardware hevc decoding
+      - dtoverlay=rpivid-v4l2 # enable hardware video decoding
       - dtoverlay=hifiberry-dacplus
       - dtoverlay=disable-wifi
       - dtoverlay=disable-bt

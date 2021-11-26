@@ -9,7 +9,7 @@ My Raspberry Pi installation at home.
 
 * Raspberry Pi 4 model B, 4GB
 * HiFiBerry DAC+
-* RAIDON GR3660-B3 (it's noisy)
+* RAIDON GR3660-B3 (with fan turned off)
 
 ![hardware](static/hardware.jpg)
 
@@ -48,11 +48,6 @@ Copy key to Raspberry Pi:
 ssh-copy-id -i ~/.ssh/pi_rsa.pub pi
 ```
 
-### GCP Cloud Logging
-
-Create service account with roles: `roles/logging.logWriter` and `roles/monitoring.metricWriter`, 
-see [GCP Cloud Logging documentation](https://cloud.google.com/logging/docs/agent/logging/authorization) for more details.
-
 ## Ansible playbooks
 
 Install 3rd party roles:
@@ -81,7 +76,7 @@ Roles:
 
 * common - missing pieces of vanilla Raspberry distribution
 * fluentbit - send systemd logs to [GCP Logging](https://cloud.google.com/logging) 
-  and/or [Loki](https://grafana.com/oss/loki/)
+  and/or [Loki](https://grafana.com/oss/loki/), see [readme](roles/fluentbit/README.md)
 * grafana - monitoring with [Grafana Cloud](https://grafana.com/products/cloud/) (free tier)
 * hdidle - spin-down disks, see [Github](https://github.com/adelolmo/hd-idle)
 * log2ram - move logs into RAM, see [Github](https://github.com/azlux/log2ram)
@@ -92,8 +87,7 @@ Roles:
 
 * adguard - privacy all the time, see [AdGuard Home](https://adguard.com/en/adguard-home/overview.html)
 * backup - to backup or not to backup, that’s no question, see [Backup Ninja](https://0xacab.org/liberate/backupninja)
-* kodi - the best smart tv ever, [Wiki](https://kodi.wiki/view/Main_Page)
+* kodi - the best [media center](https://kodi.wiki/view/Main_Page), see [readme](roles/kodi/README.md)
 * raspotify, shairport - make my retired HiFi great again: [Raspotify](https://github.com/dtcooper/raspotify), [Librespot](https://github.com/librespot-org/librespot), [Shairport](https://github.com/mikebrady/shairport-sync)
 * samba - my family disk for files and automated backups, see [Samba](https://www.samba.org)
-* transmission - the lightest BT daemon, see [Transmission](https://transmissionbt.com)
-
+* transmission - BitTorrent daemon, see [Transmission](https://transmissionbt.com)
