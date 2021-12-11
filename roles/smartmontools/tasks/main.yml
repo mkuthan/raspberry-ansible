@@ -6,6 +6,7 @@
   template:
     src: smartmontools
     dest: /etc/default/smartmontools
+    mode: "0644"
   when: smartmontools is defined
   notify:
     - restart
@@ -14,6 +15,7 @@
   template:
     src: smartd.conf
     dest: /etc/smartd.conf
+    mode: "0644"
   when: smartmontools is defined
   notify:
     - restart

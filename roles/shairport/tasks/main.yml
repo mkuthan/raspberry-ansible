@@ -7,5 +7,6 @@
   template:
     src: shairport-sync.conf
     dest: "{{ shairport_config_file }}"
+    mode: "0644"
   notify:
     - restart

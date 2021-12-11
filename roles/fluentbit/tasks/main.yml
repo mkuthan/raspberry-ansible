@@ -28,6 +28,7 @@
   template:
     src: td-agent-bit.conf
     dest: /etc/td-agent-bit/td-agent-bit.conf
+    mode: "0644"
   notify:
     - restart
 

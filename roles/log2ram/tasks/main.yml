@@ -15,6 +15,7 @@
   template:
     src: log2ram.conf
     dest: /etc/log2ram.conf
+    mode: "0644"
   when: log2ram is defined
   notify:
     - restart

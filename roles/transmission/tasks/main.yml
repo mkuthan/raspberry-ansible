@@ -15,17 +15,22 @@
     - "{{ transmission_incomplete_dir }}"
 
 # Transmission override configuration on stop, grr
-- name: Stop
+- name: Stop service before configuration
   service:
     name: transmission-daemon
     state: stopped
-  ignore_errors: true
 
 - name: Configure
   template:
     src: settings.json
     dest: /etc/transmission-daemon/settings.json
+    mode: "0644"
     owner: "{{ transmission_user }}"
     group: "{{ transmission_group }}"
   notify:
     - restart
+
+- name: Start
+  service:
+    name: transmission-daemon
+    state: started

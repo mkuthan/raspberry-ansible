@@ -25,6 +25,7 @@
   template:
     src: kodi.service
     dest: /etc/systemd/system/kodi.service
+    mode: "0644"
   notify:
     - restart
 
@@ -50,6 +51,7 @@
     - "{{ kodi_userdata_dir }}"
     - "{{ kodi_subtitles_dir }}"
 
+# Kodi override configuration on stop, grr
 - name: Stop service before configuration
   systemd:
     name: kodi
@@ -59,11 +61,13 @@
   template:
     src: sources.xml.j2
     dest: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/sources.xml"
+    mode: "0644"
 
 - name: Configure advanced settings
   template:
     src: advancedsettings.xml.j2
     dest: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/advancedsettings.xml"
+    mode: "0644"
 
 - name: Configure guisettings.xml
   xml:

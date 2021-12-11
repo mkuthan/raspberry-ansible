@@ -44,6 +44,7 @@
   template:
     src: adguard.service
     dest: /etc/systemd/system/adguard.service
+    mode: "0644"
   notify:
     - restart
 
@@ -58,6 +59,7 @@
   template:
     src: AdGuardHome.yaml.j2
     dest: "{{ user.home }}/conf/AdGuardHome.yaml"
+    mode: "0644"
   notify:
     - restart
 

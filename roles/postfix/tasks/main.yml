@@ -15,11 +15,9 @@
   template:
     src: sasl_password
     dest: "{{ postfix_sasl_password_file }}"
-  register: sasl_password
-
-- name: Postmap SASL password
-  command: postmap {{ postfix_sasl_password_file }}
-  when: sasl_password.changed
+    mode: "0640"
+  notify:
+    - postmap
 
 - name: Change SASL permissions
   file:
@@ -32,15 +30,13 @@
     dest: /etc/aliases
     regexp: "^root:"
     line: "root: {{ postfix.sasl_mail }}"
-  register: aliases
-
-- name: Update aliases
-  command: newaliases
-  when: aliases.changed
+  notify:
+    - aliases
 
 - name: Configure
   template:
     src: main.cf
     dest: /etc/postfix/main.cf
+    mode: "0644"
   notify:
     - restart
