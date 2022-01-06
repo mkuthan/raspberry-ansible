@@ -12,47 +12,10 @@
     name: raspotify
     update_cache: yes
 
-- name: Configure device name
-  lineinfile:
+- name: Configure
+  template:
+    src: raspotify.conf
     dest: "{{ raspotify_config_file }}"
-    regexp: "^#?DEVICE_NAME"
-    line: "DEVICE_NAME=\"{{ raspotify_device_name }}\""
-    state: present
-  notify:
-    - restart
-
-- name: Configure device type
-  lineinfile:
-    dest: "{{ raspotify_config_file }}"
-    regexp: "^#?DEVICE_TYPE"
-    line: "DEVICE_TYPE=\"{{ raspotify_device_type }}\""
-    state: present
-  notify:
-    - restart
-
-- name: Configure bit rate
-  lineinfile:
-    dest: "{{ raspotify_config_file }}"
-    regexp: "^#?BITRATE"
-    line: "BITRATE=\"{{ raspotify_bit_rate }}\""
-    state: present
-  notify:
-    - restart
-
-- name: Configure volume args
-  lineinfile:
-    dest: "{{ raspotify_config_file }}"
-    regexp: "^#?VOLUME_ARGS"
-    line: "VOLUME_ARGS=\"{{ raspotify_volume_args }}\""
-    state: present
-  notify:
-    - restart
-
-- name: Configure backend args
-  lineinfile:
-    dest: "{{ raspotify_config_file }}"
-    regexp: "^#?BACKEND_ARGS"
-    line: "BACKEND_ARGS=\"{{ raspotify_backend_args }}\""
-    state: present
+    mode: "0640"
   notify:
     - restart

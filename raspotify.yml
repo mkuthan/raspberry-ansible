@@ -4,8 +4,5 @@
 
   vars:
     raspotify_device_name: salon
-    raspotify_alsa_mixer_device: hifiberry
+    raspotify_alsa_device: hifiberry
     raspotify_alsa_mixer_control: Digital
-    raspotify_initial_volume: 90
-
-
