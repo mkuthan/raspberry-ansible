@@ -1,4 +1,4 @@
-- name: restart
+- name: restart hdidle
   service:
     name: hd-idle
     state: restarted

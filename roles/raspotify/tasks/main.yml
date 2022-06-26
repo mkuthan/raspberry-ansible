@@ -16,6 +16,6 @@
   template:
     src: raspotify.conf
     dest: "{{ raspotify_config_file }}"
-    mode: "0640"
+    mode: "0600"
   notify:
     - restart

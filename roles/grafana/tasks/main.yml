@@ -15,7 +15,7 @@
     dest: /etc/grafana-agent.yaml
     mode: "0640"
   notify:
-    - restart
+    - restart grafana
 
 - name: Enable service
   systemd:

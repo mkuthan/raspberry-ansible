@@ -1,4 +1,4 @@
-- name: restart
+- name: restart fluentbit
   systemd:
     name: td-agent-bit
     state: restarted

@@ -1,4 +1,4 @@
-- name: restart
+- name: restart log2ram
   service:
     name: log2ram
     state: restarted

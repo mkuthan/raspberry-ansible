@@ -2,9 +2,8 @@
   roles:
     - role: common
       tags: [ "common" ]
-#  https://github.com/fluent/fluent-bit/issues/4298
-#    - role: fluentbit
-#      tags: [ "fluentbit" ]
+    - role: fluentbit
+      tags: [ "fluentbit" ]
     - role: grafana
       tags: [ "grafana" ]
     - role: hdidle
@@ -60,7 +59,7 @@
     # configure Alsa for HiFiBerry
     hifiberry:
       alias: hifiberry
-      card: 3 # 0: headphones, 1: hdmi1, 2: hdmi2, 3: hifiberry
+      card: 1 # 0: headphones, 1: hifiberry, 2: hdmi1, 3: hdmi2
 
     mounts:
       - uuid: 24963094-c186-4ad5-a376-1efa26facc01

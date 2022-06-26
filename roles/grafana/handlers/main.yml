@@ -1,4 +1,4 @@
-- name: restart
+- name: restart grafana
   systemd:
     name: grafana-agent
     state: restarted

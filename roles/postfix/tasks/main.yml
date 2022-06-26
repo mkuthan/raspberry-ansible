@@ -39,4 +39,4 @@
     dest: /etc/postfix/main.cf
     mode: "0644"
   notify:
-    - restart
+    - restart postfix

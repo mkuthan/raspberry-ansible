@@ -18,4 +18,4 @@
     mode: "0644"
   when: log2ram is defined
   notify:
-    - restart
+    - restart log2ram
