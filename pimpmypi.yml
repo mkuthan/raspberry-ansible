@@ -59,7 +59,7 @@
     # configure Alsa for HiFiBerry
     hifiberry:
       alias: hifiberry
-      card: 1 # 0: headphones, 1: hifiberry, 2: hdmi1, 3: hdmi2
+      card: sndrpihifiberry # by name
 
     mounts:
       - uuid: 24963094-c186-4ad5-a376-1efa26facc01
