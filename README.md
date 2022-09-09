@@ -75,7 +75,7 @@ ansible-playbook pimpmypi.yml
 Roles:
 
 * common - missing pieces of vanilla Raspberry distribution
-* fluentbit - send systemd logs to [GCP Logging](https://cloud.google.com/logging) 
+* fluentbit - send systemd logs to [GCP Logging](https://cloud.google.com/logging)
   and/or [Loki](https://grafana.com/oss/loki/), see [readme](roles/fluentbit/README.md)
 * grafana - monitoring with [Grafana Cloud](https://grafana.com/products/cloud/) (free tier)
 * hdidle - spin-down disks, see [Github](https://github.com/adelolmo/hd-idle)
@@ -88,6 +88,7 @@ Roles:
 * adguard - privacy all the time, see [AdGuard Home](https://adguard.com/en/adguard-home/overview.html)
 * backup - to backup or not to backup, that’s no question, see [Backup Ninja](https://0xacab.org/liberate/backupninja)
 * kodi - the best [media center](https://kodi.wiki/view/Main_Page), see [readme](roles/kodi/README.md)
-* raspotify, shairport - make my retired HiFi great again: [Raspotify](https://github.com/dtcooper/raspotify), [Librespot](https://github.com/librespot-org/librespot), [Shairport](https://github.com/mikebrady/shairport-sync)
+* raspotify, shairport - make my retired HiFi great again: [Raspotify](https://github.com/dtcooper/raspotify)
+  , [Librespot](https://github.com/librespot-org/librespot), [Shairport](https://github.com/mikebrady/shairport-sync)
 * samba - my family disk for files and automated backups, see [Samba](https://www.samba.org)
 * transmission - BitTorrent daemon, see [Transmission](https://transmissionbt.com)
