@@ -1,2 +1,5 @@
 skip_list:
-  - '403' # Package installs should not use latest
+  - fqcn-builtins # global
+  - yaml # global
+  - no-changed-when # roles/common/tasks/swap.yml
+  - package-latest # roles/packages/tasks/update.yml
