@@ -4,10 +4,11 @@
   register: dphys_swapfile
 
 - name: Disable swap
+  when:
+    - dphys_swapfile.stat.exists
   block:
     - name: Turn off swap
-      command:
-        dphys-swapfile swapoff
+      command: dphys-swapfile swapoff
         dphys-swapfile uninstall
     - name: Disable service
       systemd:
@@ -15,5 +16,3 @@
         state: stopped
         enabled: no
         masked: yes
-  when:
-    - dphys_swapfile.stat.exists

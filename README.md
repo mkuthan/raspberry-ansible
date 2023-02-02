@@ -27,13 +27,13 @@ The repository is tested against Raspberry Pi OS Lite 32 bit (Debian 11 "Bullsey
 
 Generate key:
 
-```
+```shell
 ssh-keygen -f pi_rsa
 ```
 
 Configure client:
 
-```
+```shell
 cat <<EOT >> ~/.ssh/config
 Host pi
 	HostName «IP»
@@ -44,7 +44,7 @@ EOT
 
 Copy key to Raspberry Pi:
 
-```
+```shell
 ssh-copy-id -i ~/.ssh/pi_rsa.pub pi
 ```
 
@@ -52,15 +52,15 @@ ssh-copy-id -i ~/.ssh/pi_rsa.pub pi
 
 Install 3rd party roles:
 
-```
+```shell
 ansible-galaxy install -r requirements.yml
 ```
 
 ### Packages playbook
 
-Configure APT repositories, install packages and upgrade system to backported Buster:
+Configure APT repositories, install packages and upgrade system to the latest Bullseye:
 
-```
+```shell
 ansible-playbook packages.yml
 ```
 
@@ -68,7 +68,7 @@ ansible-playbook packages.yml
 
 Various playbooks to improve vanilla Raspberry Pi setup:
 
-```
+```shell
 ansible-playbook pimpmypi.yml
 ```
 
