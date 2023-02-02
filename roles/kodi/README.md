@@ -20,7 +20,7 @@ apt-get build-dep kodi
 Get the source code:
 
 ```shell
-git clone -b Matrix https://github.com/xbmc/xbmc kodi
+git clone -b Nexus https://github.com/xbmc/xbmc kodi
 ```
 
 Create build directory:
@@ -40,7 +40,9 @@ cmake ../kodi -DCMAKE_INSTALL_PREFIX=/usr/local \
     -DENABLE_OPENGL=OFF \
     -DENABLE_PULSEAUDIO=OFF \
     -DENABLE_INTERNAL_FMT=ON \
-    -DENABLE_INTERNAL_SPDLOG=ON
+    -DENABLE_INTERNAL_SPDLOG=ON \
+    -DCMAKE_CXX_STANDARD_LIBRARIES="-latomic" \
+    -DWITH_CPU=arm -DWITH_ARCH=arm
 ```
 
 Build:
@@ -70,7 +72,7 @@ sudo make -j$(getconf _NPROCESSORS_ONLN) -C tools/depends/target/binary-addons P
 ## Out-of-tree binary add-ons
 
 ```shell
-git clone -b Matrix  https://github.com/xbmc/inputstream.adaptive.git
+git clone -b Nexus https://github.com/xbmc/inputstream.adaptive.git
 ```
 
 ```shell
