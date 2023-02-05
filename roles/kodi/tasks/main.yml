@@ -74,14 +74,28 @@
     file: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
     xpath: "/settings/setting[@id='{{ item.id }}']"
     value: "{{ item.value }}"
-  with_items: "{{ kodi_gui_settings | zip(kodi_subtitles_gui_settings) }}"
+  with_items: "{{ kodi_gui_settings }}"
 
 - name: Configure guisettings.xml (drop default attributes)
   xml:
     path: "/home/kodi/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
     xpath: "/settings/setting[@id='{{ item.id }}']/@default"
     state: absent
-  with_items: "{{ kodi_gui_settings | zip(kodi_subtitles_gui_settings) }}"
+  with_items: "{{ kodi_gui_settings }}"
+
+- name: Configure subtitles guisettings.xml
+  xml:
+    file: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
+    xpath: "/settings/setting[@id='{{ item.id }}']"
+    value: "{{ item.value }}"
+  with_items: "{{ kodi_subtitles_gui_settings }}"
+
+- name: Configure subtitles guisettings.xml (drop default attributes)
+  xml:
+    path: "/home/kodi/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
+    xpath: "/settings/setting[@id='{{ item.id }}']/@default"
+    state: absent
+  with_items: "{{ kodi_subtitles_gui_settings }}"
 
 - name: Start service after configuration
   systemd:
