@@ -32,7 +32,7 @@ mkdir kodi-build; cd kodi-build
 Configure build:
 
 ```shell
-cmake ../kodi -DCMAKE_INSTALL_PREFIX=/usr/local/kodi-nexus \
+cmake ../kodi -DCMAKE_INSTALL_PREFIX=/usr/local/kodi \
     -DCORE_PLATFORM_NAME=gbm \
     -DAPP_RENDER_SYSTEM=gles \
     -DENABLE_VAAPI=OFF \
@@ -67,6 +67,6 @@ cd kodi
 
 ```shell
 sudo make -j$(getconf _NPROCESSORS_ONLN) \
-    -C tools/depends/target/binary-addons PREFIX=/usr/local/kodi-nexus \
-    ADDONS="inputstream.adaptive inputstream.ffmpegdirect"
+    -C tools/depends/target/binary-addons PREFIX=/usr/local/kodi \
+    ADDONS="inputstream.adaptive"
 ```
