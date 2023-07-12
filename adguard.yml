@@ -4,7 +4,7 @@
 
   vars:
     # https://github.com/AdguardTeam/AdGuardHome/releases
-    adguard_version: v0.106.3
+    adguard_version: v0.107.34
 
     # https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration
     adguard_http_port: 3000
@@ -36,14 +36,8 @@
     adguard_clients:
       - name: Maciek_laptop
         id: 192.168.1.111
-      - name: Maciek_tablet
-        id: 192.168.1.105
 
     adguard_user_rules:
-      - "||poki.*^"
-      - "||roblox.*^"
-      - "||cda.pl^$client=''Maciek_tablet''"
-      - "||youtube.com^$client=''Maciek_tablet''"
       - "@@||ajax.cloudflare.com^"
       - "@@||cdn.cloudflare.net^"
       - "@@||thepiratebay.org^"
