@@ -9,7 +9,15 @@
   apt:
     deb: "{{ grafana_agent_deb_url }}"
 
-- name: Configure
+- name: Configure defaults
+  lineinfile:
+    path: /etc/default/grafana-agent
+    regexp: "^CUSTOM_ARGS="
+    line: 'CUSTOM_ARGS="{{ grafana_custom_args }}"'
+  notify:
+    - restart grafana
+
+- name: Configure service
   template:
     src: grafana-agent.yaml
     dest: /etc/grafana-agent.yaml

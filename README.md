@@ -17,11 +17,12 @@ My Raspberry Pi installation at home.
 
 ### Install image
 
-The repository is tested against Raspberry Pi OS Lite 32 bit (Debian 11 "Bullseye").
+The repository is tested against Raspberry Pi OS Lite 64 bit (Debian 11 "Bullseye").
 
 1. Install image on SD card
 1. Append `ip=«IP»` into `cmdline.txt`
 1. Enable ssh `touch ssh`
+1. Configure default user account with `pi` password `echo "pi:vCKtyl9xwqPxU" > userconf`
 
 ### Configuring SSH
 
@@ -36,9 +37,9 @@ Configure client:
 ```shell
 cat <<EOT >> ~/.ssh/config
 Host pi
-	HostName «IP»
-	User pi
-	IdentityFile ~/.ssh/pi_rsa
+ HostName «IP»
+ User pi
+ IdentityFile ~/.ssh/pi_rsa
 EOT
 ```
 

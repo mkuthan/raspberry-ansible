@@ -41,8 +41,7 @@ cmake ../kodi -DCMAKE_INSTALL_PREFIX=/usr/local/kodi \
     -DENABLE_PULSEAUDIO=OFF \
     -DENABLE_INTERNAL_FMT=ON \
     -DENABLE_INTERNAL_SPDLOG=ON \
-    -DCMAKE_CXX_STANDARD_LIBRARIES="-latomic" \
-    -DWITH_CPU=arm -DWITH_ARCH=arm
+    -DCMAKE_CXX_STANDARD_LIBRARIES="-latomic"  
 ```
 
 Build:
