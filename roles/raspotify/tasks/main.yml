@@ -4,8 +4,8 @@
 
 - name: Add apt repository
   apt_repository:
-    repo: deb [arch=armhf] https://dtcooper.github.io/raspotify raspotify main
-    filename: 'raspotify'
+    repo: deb https://dtcooper.github.io/raspotify raspotify main
+    filename: "raspotify"
 
 - name: Install
   apt:

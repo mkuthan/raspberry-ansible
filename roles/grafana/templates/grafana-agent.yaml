@@ -14,8 +14,4 @@ prometheus:
             password: "{{ grafana.password }}"
             username: "{{ grafana.username }}"
           url: "{{ grafana_prometheus_url }}"
-  global:
-    scrape_interval: "{{ grafana_prometheus_scrape_interval }}"
   wal_directory: /tmp/grafana-agent-wal
-server:
-  http_listen_port: 12345

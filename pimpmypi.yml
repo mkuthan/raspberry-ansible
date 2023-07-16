@@ -1,26 +1,26 @@
 - hosts: all
   roles:
     - role: common
-      tags: [ "common" ]
+      tags: ["common"]
     - role: fluentbit
-      tags: [ "fluentbit" ]
+      tags: ["fluentbit"]
     - role: grafana
-      tags: [ "grafana" ]
+      tags: ["grafana"]
     - role: hdidle
-      tags: [ "hdidle" ]
+      tags: ["hdidle"]
     - role: log2ram
-      tags: [ "log2ram" ]
+      tags: ["log2ram"]
     - role: postfix
-      tags: [ "postfix" ]
+      tags: ["postfix"]
     - role: smartmontools
-      tags: [ "smartmontools" ]
+      tags: ["smartmontools"]
 
   vars:
     boot_config_params:
       - name: "arm_boost"
         value: 1 # turbo-mode clock to be increased from 1.5GHz to 1.8GHz
       - name: "arm_64bit"
-        value: 1 # 64-bit kernel (for performance) with 32-bit user space (for compatibility)
+        value: 1 # 64-bit kernel (for performance)
       - name: "hdmi_drive"
         value: 2 # always enable HDMI audio to preserve alsa device order
       - name: "hdmi_force_hotplug"
@@ -49,7 +49,7 @@
     dhcpcd:
       ip_address: 192.168.1.2/24
       gateway_address: 192.168.1.1
-      dns_addresses: [ 8.8.8.8, 8.8.4.4 ]
+      dns_addresses: [8.8.8.8, 8.8.4.4]
 
     # limit logs storage
     journald:
