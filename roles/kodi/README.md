@@ -64,8 +64,25 @@ Build binary extensions:
 cd kodi
 ```
 
+Clean extensions:
+
+```shell
+sudo make -j$(getconf _NPROCESSORS_ONLN) \
+    -C tools/depends/target/binary-addons PREFIX=/usr/local/kodi distClean
+```
+
+Build and install all extensions:
+
 ```shell
 sudo make -j$(getconf _NPROCESSORS_ONLN) \
     -C tools/depends/target/binary-addons PREFIX=/usr/local/kodi \
-    ADDONS="inputstream.adaptive"
+    ADDONS="inputstream.adaptive pvr.iptvsimple"
+```
+
+Build and install specified extensions:
+
+```shell
+sudo make -j$(getconf _NPROCESSORS_ONLN) \
+    -C tools/depends/target/binary-addons PREFIX=/usr/local/kodi \
+    ADDONS="inputstream.adaptive pvr.iptvsimple"
 ```

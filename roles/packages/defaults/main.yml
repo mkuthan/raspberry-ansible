@@ -1,5 +1,6 @@
 default_packages:
   # admin utilities
+  - aria2
   - deborphan
   - dnsutils
   - hdparm
