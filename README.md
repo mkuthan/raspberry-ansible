@@ -92,4 +92,5 @@ Roles:
 * raspotify, shairport - make my retired HiFi great again: [Raspotify](https://github.com/dtcooper/raspotify)
   , [Librespot](https://github.com/librespot-org/librespot), [Shairport](https://github.com/mikebrady/shairport-sync)
 * samba - my family disk for files and automated backups, see [Samba](https://www.samba.org)
+* viewtube - YT without 
 * transmission - BitTorrent daemon, see [Transmission](https://transmissionbt.com)

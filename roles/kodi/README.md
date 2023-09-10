@@ -68,7 +68,7 @@ Clean extensions:
 
 ```shell
 sudo make -j$(getconf _NPROCESSORS_ONLN) \
-    -C tools/depends/target/binary-addons PREFIX=/usr/local/kodi distClean
+    -C tools/depends/target/binary-addons PREFIX=/usr/local/kodi distclean
 ```
 
 Build and install all extensions:

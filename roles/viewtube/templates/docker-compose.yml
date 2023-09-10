@@ -1,0 +1,34 @@
+version: "3"
+services:
+  viewtube:
+    image: mauriceo/viewtube:{{ viewtube_version }}
+    depends_on:
+      - viewtube-mongodb
+      - viewtube-redis
+    networks:
+      - viewtube
+    volumes:
+      - "{{ user.home }}/data/viewtube:/data"
+    environment:
+      - VIEWTUBE_DATABASE_HOST=viewtube-mongodb
+      - VIEWTUBE_REDIS_HOST=viewtube-redis
+    ports:
+      - "{{ viewtube_port }}:8066"
+
+  viewtube-mongodb:
+    image: mongo:4.4.18
+    networks:
+      - viewtube
+    volumes:
+      - "{{ user.home }}/data/db:/data/db"
+
+  viewtube-redis:
+    restart: unless-stopped
+    image: redis:7
+    networks:
+      - viewtube
+    volumes:
+      - "{{ user.home }}/data/redis:/data"
+
+networks:
+  viewtube:

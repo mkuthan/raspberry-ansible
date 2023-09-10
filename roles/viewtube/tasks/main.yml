@@ -1,0 +1,54 @@
+- name: Create group
+  group:
+    name: "{{ viewtube_group }}"
+    system: true
+
+- name: Create user
+  user:
+    name: "{{ viewtube_user }}"
+    group: "{{ viewtube_group }}"
+    groups: [ "docker" ]
+    system: true
+  register: user
+
+- name: Create directories
+  file:
+    path: "{{ user.home }}/{{ item }}"
+    owner: "{{ viewtube_user }}"
+    group: "{{ viewtube_group }}"
+    mode: "0755"
+    state: directory
+  with_items:
+    - conf
+    - data
+
+- name: Configure service
+  template:
+    src: docker-compose.yml
+    dest: "{{ user.home }}/conf/docker-compose.yml"
+    mode: "0644"
+  notify:
+    - restart
+
+- name: Create containers
+  docker_compose:
+    project_src: "{{ user.home }}/conf"
+      
+  notify:
+    - restart
+
+- name: Install service
+  template:
+    src: viewtube.service
+    dest: /etc/systemd/system/viewtube.service
+    mode: "0644"
+  notify:
+    - restart
+
+- name: Enable service
+  systemd:
+    name: viewtube
+    enabled: yes
+  notify:
+    - restart
+
