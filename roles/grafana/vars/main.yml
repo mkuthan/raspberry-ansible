@@ -1,5 +1,4 @@
-grafana_agent_version: 0.34.3
-grafana_agent_deb_url: https://github.com/grafana/agent/releases/download/v{{ grafana_agent_version }}/grafana-agent-{{ grafana_agent_version }}-1.arm64.deb
+grafana_agent_deb_url: https://github.com/grafana/agent/releases/download/v{{ grafana.agent_version }}/grafana-agent-{{ grafana.agent_version }}-1.arm64.deb
 
 # check url under Grafana datasources admin panel
 grafana_prometheus_url: https://prometheus-blocks-prod-us-central1.grafana.net/api/prom/push

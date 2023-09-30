@@ -65,6 +65,13 @@ Configure APT repositories, install packages and upgrade system to the latest Bu
 ansible-playbook packages.yml
 ```
 
+The following packages have versions pinned:
+
+* adguard
+* grafana-agent
+* kodi
+* viewtube
+
 ### Pimp my Pi playbooks
 
 Various playbooks to improve vanilla Raspberry Pi setup:
@@ -92,5 +99,5 @@ Roles:
 * raspotify, shairport - make my retired HiFi great again: [Raspotify](https://github.com/dtcooper/raspotify)
   , [Librespot](https://github.com/librespot-org/librespot), [Shairport](https://github.com/mikebrady/shairport-sync)
 * samba - my family disk for files and automated backups, see [Samba](https://www.samba.org)
-* viewtube - YT without 
+* viewtube - YouTube without ads
 * transmission - BitTorrent daemon, see [Transmission](https://transmissionbt.com)

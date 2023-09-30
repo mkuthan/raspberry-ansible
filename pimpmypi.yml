@@ -95,6 +95,7 @@
           36306665333334383461333231643732613865313730306261616333616263373238
 
     grafana:
+      agent_version: 0.36.2
       username: 70924
       password: !vault |
         $ANSIBLE_VAULT;1.1;AES256
