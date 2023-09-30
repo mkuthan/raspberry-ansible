@@ -65,7 +65,7 @@ Configure APT repositories, install packages and upgrade system to the latest Bu
 ansible-playbook packages.yml
 ```
 
-The following packages have versions pinned:
+The following packages have versions pinned and needs to updated explicitly:
 
 * adguard
 * grafana-agent
@@ -99,5 +99,5 @@ Roles:
 * raspotify, shairport - make my retired HiFi great again: [Raspotify](https://github.com/dtcooper/raspotify)
   , [Librespot](https://github.com/librespot-org/librespot), [Shairport](https://github.com/mikebrady/shairport-sync)
 * samba - my family disk for files and automated backups, see [Samba](https://www.samba.org)
-* viewtube - YouTube without ads
+* viewtube - YouTube without ads, see [ViewTube](https://viewtube.io/)
 * transmission - BitTorrent daemon, see [Transmission](https://transmissionbt.com)
