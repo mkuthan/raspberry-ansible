@@ -23,7 +23,7 @@
 - name: Configure
   template:
     src: settings.j2
-    dest: /etc/transmission-daemon/settings.j2
+    dest: /etc/transmission-daemon/settings.json
     mode: "0644"
     owner: "{{ transmission_user }}"
     group: "{{ transmission_group }}"
