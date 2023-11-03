@@ -1,7 +1,7 @@
 - name: Configure dhcpcd
   template:
     src: dhcpcd.conf
-    dest: "{{ dhcpcd_config_file }}"
+    dest: "{{ common_dhcpcd_config_file }}"
     mode: "0644"
   when: dhcpcd is defined
   notify: restart dhcpcd

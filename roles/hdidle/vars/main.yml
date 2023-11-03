@@ -1,1 +1,1 @@
-hdile_opts: "-i {{ hdidle.idle_time }} -l /var/log/hd-idle.log"
+hdidle_opts: "-i {{ hdidle.idle_time }} -l /var/log/hd-idle.log"

@@ -83,6 +83,7 @@ ansible-playbook pimpmypi.yml
 Roles:
 
 * common - missing pieces of vanilla Raspberry distribution
+* aria2 - the fastest utility for downloading files
 * fluentbit - send systemd logs to [GCP Logging](https://cloud.google.com/logging)
   and/or [Loki](https://grafana.com/oss/loki/), see [readme](roles/fluentbit/README.md)
 * grafana - monitoring with [Grafana Cloud](https://grafana.com/products/cloud/) (free tier)

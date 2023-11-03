@@ -1,8 +1,8 @@
-boot_config_file: /boot/config.txt
+common_boot_config_file: /boot/config.txt
 
-asound_config_file: /etc/asound.conf
-dhcpcd_config_file: /etc/dhcpcd.conf
+common_asound_config_file: /etc/asound.conf
+common_dhcpcd_config_file: /etc/dhcpcd.conf
 
-journald_config_file: /etc/systemd/journald.conf
+common_journald_config_file: /etc/systemd/journald.conf
 
-sshd_config_file: /etc/ssh/sshd_config
+common_sshd_config_file: /etc/ssh/sshd_config
