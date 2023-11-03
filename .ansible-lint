@@ -5,3 +5,9 @@ skip_list:
   - name # global
   - no-changed-when # roles/common/tasks/swap.yml
   - package-latest # roles/packages/tasks/update.yml
+exclude_paths:
+  - .github/
+  - .vscode/
+  - filter_plugins/
+  - static/
+  - venv/
