@@ -4,7 +4,7 @@
 
   vars:
     # https://github.com/ViewTube/viewtube/releases
-    viewtube_version: 0.12.2
+    viewtube_version: 0.13.0
 
     # https://viewtube.wiki/installation/configuration
     viewtube_port: 8066

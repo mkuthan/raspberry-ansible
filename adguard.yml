@@ -4,7 +4,7 @@
 
   vars:
     # https://github.com/AdguardTeam/AdGuardHome/releases
-    adguard_version: v0.107.34
+    adguard_version: v0.107.40
 
     # https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration
     adguard_http_port: 3000
