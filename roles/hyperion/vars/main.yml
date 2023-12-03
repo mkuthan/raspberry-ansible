@@ -1,0 +1,3 @@
+hyperion_directory: /home/pi/.hyperion
+hyperion_drm_capture_distribution: "https://github.com/rudihorn/drm-vc4-grabber/releases/download/{{ hyperion_version }}/drm-vc4-grabber-{{ hyperion_version }}-aarch64-linux.tar.xz"
+hyperion_drm_capture_binary: "{{ hyperion_directory }}/drm-vc4-grabber-{{ hyperion_version }}-aarch64-linux/drm-vc4-grabber"
