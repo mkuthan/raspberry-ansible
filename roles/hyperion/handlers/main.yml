@@ -1,4 +1,0 @@
-- name: restart drm-capture
-  service:
-    name: drm-capture
-    state: restarted

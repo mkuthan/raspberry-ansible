@@ -1,45 +1,13 @@
-# - name: Add apt key
-#   apt_key:
-#     url: https://apt.hyperion-project.org/hyperion.pub.key
+- name: Add apt key
+  apt_key:
+    url: https://apt.hyperion-project.org/hyperion.pub.key
 
-# - name: Add apt repository
-#   apt_repository:
-#     repo: "deb https://apt.hyperion-project.org/ {{ ansible_distribution_release }} main"
-#     filename: "hyperion"
+- name: Add apt repository
+  apt_repository:
+    repo: "deb https://apt.hyperion-project.org/ {{ ansible_distribution_release }} main"
+    filename: "hyperion"
 
-# - name: Install
-#   apt:
-#     name: hyperion
-#     update_cache: yes
-
-- name: Create directory
-  file:
-    path: "{{ hyperion_directory }}"
-    owner: "pi"
-    group: "pi"
-    mode: "0755"
-    state: directory
-
-- name: Download drm capture
-  unarchive:
-    src: "{{ hyperion_drm_capture_distribution }}"
-    dest: "{{ hyperion_directory }}"
-    remote_src: yes
-    owner: "pi"
-    group: "pi"
-    mode: "0755"
-
-- name: Install service
-  template:
-    src: drm-capture.service
-    dest: /etc/systemd/system/drm-capture.service
-    mode: "0644"
-  notify:
-    - restart drm-capture
-
-- name: Enable service
-  systemd:
-    name: drm-capture
-    enabled: yes
-  notify:
-    - restart drm-capture
+- name: Install
+  apt:
+    name: hyperion
+    update_cache: yes

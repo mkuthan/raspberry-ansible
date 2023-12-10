@@ -1,7 +1,3 @@
 - hosts: all
   roles:
     - role: hyperion
-
-  vars:
-    hyperion_version: v0.1.1
-    hyperion_drm_capture_device: /dev/dri/card1
