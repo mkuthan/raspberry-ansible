@@ -25,4 +25,5 @@ packages_default_packages:
   - docker-compose
   - python3-docker
   # other
+  - jhead
   - python3-lxml
