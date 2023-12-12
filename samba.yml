@@ -36,15 +36,15 @@
           34396566363533366138313863376438623733386461653864313561316230613032383562313435
           3161633230343931320a336636313138633665353030383032626362323437313537613730666638
           3061
-      - name: timemachine
-        group: timemachine
-        password: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          63626430656563353132396430376239323663623932326137646236326635303135613264366232
-          6338666665303637653434316333616662323066666666380a356130656464373332373165353739
-          30663766313932656233323163666435353063363364333935313030313863613032306432323562
-          6365656434353032620a376430643663626333366161393433376234343934633438313631383666
-          6261
+      # - name: timemachine
+      #   group: timemachine
+      #   password: !vault |
+      #     $ANSIBLE_VAULT;1.1;AES256
+      #     63626430656563353132396430376239323663623932326137646236326635303135613264366232
+      #     6338666665303637653434316333616662323066666666380a356130656464373332373165353739
+      #     30663766313932656233323163666435353063363364333935313030313863613032306432323562
+      #     6365656434353032620a376430643663626333366161393433376234343934633438313631383666
+      #     6261
 
     samba_workgroup: BEKASOW
 
@@ -66,8 +66,8 @@
         password: "{{ users | select_attribute_by_key('name', 'magda', 'password') }}"
       - name: maciek
         password: "{{ users | select_attribute_by_key('name', 'maciek', 'password') }}"
-      - name: timemachine
-        password: "{{ users | select_attribute_by_key('name', 'timemachine', 'password') }}"
+      # - name: timemachine
+      #   password: "{{ users | select_attribute_by_key('name', 'timemachine', 'password') }}"
 
     samba_shares_root: /media/disk1
     samba_shares:
@@ -80,25 +80,25 @@
         comment: "Transmission downloads"
         group: users
         browseable: "yes"
-      - name: TimeMachine
-        comment: "Share for MacOS TimeMachine backup"
-        vfs_objects:
-          - name: fruit
-            options:
-              - name: time machine
-                value: "yes"
-          - name: streams_xattr
-        path: /media/timemachine/timemachine
-        write_list: timemachine
-        owner: timemachine
-        group: timemachine
-        public: "no"
-        browseable: "no"
+      # - name: TimeMachine
+      #   comment: "Share for MacOS TimeMachine backup"
+      #   vfs_objects:
+      #     - name: fruit
+      #       options:
+      #         - name: time machine
+      #           value: "yes"
+      #     - name: streams_xattr
+      #   path: /media/timemachine/timemachine
+      #   write_list: timemachine
+      #   owner: timemachine
+      #   group: timemachine
+      #   public: "no"
+      #   browseable: "no"
 
   pre_tasks:
-    - name: Create timemachine group
-      group:
-        name: timemachine
+    # - name: Create timemachine group
+    #   group:
+    #     name: timemachine
 
     - name: Create accounts
       user:

@@ -68,14 +68,14 @@
         path: /media/disk1
         fstype: ext4
         opts: defaults,nofail,x-systemd.device-timeout=10s
-      - uuid: aaf75bbe-3322-4897-a978-00401760dea7
+      - uuid: 620d0822-63d1-4921-9d98-205a1fb4c663
         path: /media/disk2
         fstype: ext4
         opts: defaults,nofail,x-systemd.device-timeout=10s
-      - uuid: 834d8e92-b1fe-4f63-bbb7-25373734e592
-        path: /media/timemachine
-        fstype: ext4
-        opts: defaults,nofail,x-systemd.device-timeout=10s
+      # - uuid: 834d8e92-b1fe-4f63-bbb7-25373734e592
+      #   path: /media/timemachine
+      #   fstype: ext4
+      #   opts: defaults,nofail,x-systemd.device-timeout=10s
 
     fluentbit:
       # stackdriver:
