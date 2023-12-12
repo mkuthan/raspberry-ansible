@@ -10,5 +10,7 @@
       - /etc
       - /home
       - /root
-      - /media/disk1/public
-
+      - /media/disk1/public/documents
+      - /media/disk1/public/ebooks
+      - /media/disk1/public/music
+      - /media/disk1/public/photos
