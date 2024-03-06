@@ -10,6 +10,7 @@
       - /etc
       - /home
       - /root
+      - /var/lib/docker/volumes
       - /media/disk1/public/documents
       - /media/disk1/public/ebooks
       - /media/disk1/public/music

@@ -1,22 +1,24 @@
 - import_tasks: boot.yml
-  tags: [ "boot" ]
+  tags: ["boot"]
 - import_tasks: swap.yml
-  tags: [ "swap" ]
+  tags: ["swap"]
 - import_tasks: hostname.yml
-  tags: [ "hostname" ]
+  tags: ["hostname"]
 - import_tasks: locale.yml
-  tags: [ "locale" ]
+  tags: ["locale"]
 - import_tasks: timezone.yml
-  tags: [ "timezone" ]
+  tags: ["timezone"]
 - import_tasks: security.yml
-  tags: [ "security" ]
+  tags: ["security"]
 - import_tasks: dhcpcd.yml
-  tags: [ "dhcpcd" ]
+  tags: ["dhcpcd"]
 - import_tasks: journald.yml
-  tags: [ "journald" ]
+  tags: ["journald"]
 - import_tasks: hifiberry.yml
-  tags: [ "hifiberry" ]
+  tags: ["hifiberry"]
 - import_tasks: mounts.yml
-  tags: [ "mounts" ]
+  tags: ["mounts"]
 - import_tasks: motd.yml
-  tags: [ "motd" ]
+  tags: ["motd"]
+- import_tasks: packages.yml
+  tags: ["packages"]

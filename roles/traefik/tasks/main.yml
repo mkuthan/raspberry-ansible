@@ -1,0 +1,46 @@
+- name: Create /etc/traefik
+  ansible.builtin.file:
+    path: /etc/traefik
+    state: directory
+    mode: "0755"
+
+- name: Configure Traefik
+  ansible.builtin.template:
+    src: traefik.yml.j2
+    dest: /etc/traefik/traefik.yml
+    mode: "0644"
+
+- name: Create Traefik volumes
+  community.docker.docker_volume:
+    volume_name: "{{ item }}"
+  loop:
+    - traefik-letsencrypt
+
+- name: Create Traefik container
+  community.docker.docker_container:
+    name: traefik
+    image: traefik:{{ traefik_version }}
+
+    env:
+      DUCKDNS_TOKEN: "{{ traefik_duckdns_token }}"
+
+    ports:
+      - "80:80"
+      - "443:443"
+      - "{{ traefik_admin_port }}:{{ traefik_admin_port }}"
+
+    volumes:
+      - /etc/traefik/:/etc/traefik/:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - traefik-letsencrypt:/letsencrypt
+
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.traefik.rule: Host(`{{ traefik_admin_host }}.{{ domain_name }}`)
+      traefik.http.routers.traefik.service: "api@internal"
+
+    networks:
+      - name: "{{ docker_network_name }}"
+
+    state: started
+    restart_policy: unless-stopped

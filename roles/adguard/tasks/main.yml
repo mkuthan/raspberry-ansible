@@ -1,65 +1,34 @@
-- name: Create group
-  group:
-    name: "{{ adguard_group }}"
-    system: true
+- name: Create AdGuard volumes
+  community.docker.docker_volume:
+    volume_name: "{{ item }}"
+  loop:
+    - adguard-conf
+    - adguard-work
 
-- name: Create user
-  user:
-    name: "{{ adguard_user }}"
-    group: "{{ adguard_group }}"
-    groups: [ "docker" ]
-    system: true
-  register: user
-
-- name: Create directories
-  file:
-    path: "{{ user.home }}/{{ item }}"
-    owner: "{{ adguard_user }}"
-    group: "{{ adguard_group }}"
-    mode: "0755"
-    state: directory
-  with_items:
-    - conf
-    - work
-
-- name: Create container
-  docker_container:
+- name: Create AdGuard container
+  community.docker.docker_container:
     name: adguard
     image: adguard/adguardhome:{{ adguard_version }}
-    published_ports:
+
+    ports:
       - 53:53/tcp # DNS
       - 53:53/udp # DNS
-      - 443:443/tcp # DNS over HTTPS
+      # - 443:443/tcp # DNS over HTTPS
       - 853:853/tcp # DNS over TLS
-      - "{{ adguard_http_port }}:3000/tcp"
+      - "{{ adguard_port }}:3000/tcp" # Web interface
+
     volumes:
-      - "{{ user.home }}/conf:/opt/adguardhome/conf"
-      - "{{ user.home }}/work:/opt/adguardhome/work"
-    container_default_behavior: no_defaults
-    state: present
-  notify:
-    - restart
+      - adguard-conf:/opt/adguardhome/conf
+      - adguard-work:/opt/adguardhome/work
 
-- name: Install service
-  template:
-    src: adguard.service
-    dest: /etc/systemd/system/adguard.service
-    mode: "0644"
-  notify:
-    - restart
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.adguard.rule: "Host(`{{ adguard_host }}.{{ domain_name }}`)"
+      traefik.http.routers.adguard.service: "adguard"
+      traefik.http.services.adguard.loadbalancer.server.port: "{{ adguard_port }}"
 
-- name: Enable service
-  systemd:
-    name: adguard
-    enabled: yes
-  notify:
-    - restart
+    networks:
+      - name: "{{ docker_network_name }}"
 
-- name: Configure service
-  template:
-    src: AdGuardHome.yaml.j2
-    dest: "{{ user.home }}/conf/AdGuardHome.yaml"
-    mode: "0644"
-  notify:
-    - restart
-
+    state: started
+    restart_policy: unless-stopped

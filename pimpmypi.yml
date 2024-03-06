@@ -4,6 +4,8 @@
       tags: ["common"]
     - role: aria2
       tags: ["aria2"]
+    - role: docker
+      tags: ["docker"]
     - role: fluentbit
       tags: ["fluentbit"]
     - role: grafana
@@ -43,9 +45,33 @@
       - dtoverlay=disable-wifi
       - dtoverlay=disable-bt
 
-    hostname: salon
+    hostname: bekasow
     locale: en_US.UTF-8
     timezone: Europe/Warsaw
+
+    packages:
+      # admin utilities
+      - deborphan
+      - dnsutils
+      - hdparm
+      - htop
+      - iotop
+      - lsof
+      - mc
+      - nmap
+      - rsync
+      - screen
+      - tcpdump
+      # build tools
+      - build-essential
+      - devscripts
+      - git
+      # security
+      - unattended-upgrades
+      - fail2ban
+      # other
+      - jhead
+      - python3-lxml
 
     # configure static IP address
     dhcpcd:

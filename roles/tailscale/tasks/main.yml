@@ -1,0 +1,12 @@
+- name: Add Tailscale repository key
+  ansible.builtin.apt_key:
+    url: https://pkgs.tailscale.com/stable/raspbian/{{ ansible_distribution_release }}.noarmor.gpg
+
+- name: Add Tailscale repository
+  ansible.builtin.apt_repository:
+    repo: deb https://pkgs.tailscale.com/stable/raspbian {{ ansible_distribution_release }} main
+    filename: tailscale
+
+- name: Install Tailscale
+  ansible.builtin.apt:
+    name: tailscale

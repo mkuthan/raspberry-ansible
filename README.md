@@ -57,21 +57,6 @@ Install 3rd party roles:
 ansible-galaxy install -r requirements.yml
 ```
 
-### Packages playbook
-
-Configure APT repositories, install packages and upgrade system to the latest Bullseye:
-
-```shell
-ansible-playbook packages.yml
-```
-
-The following packages have versions pinned and needs to updated explicitly:
-
-* adguard
-* grafana-agent
-* kodi
-* viewtube
-
 ### Pimp my Pi playbooks
 
 Various playbooks to improve vanilla Raspberry Pi setup:
@@ -84,6 +69,7 @@ Roles:
 
 * common - missing pieces of vanilla Raspberry distribution
 * aria2 - the fastest utility for downloading files
+* docker - Docker repository and packages
 * fluentbit - send systemd logs to [GCP Logging](https://cloud.google.com/logging)
   and/or [Loki](https://grafana.com/oss/loki/), see [readme](roles/fluentbit/README.md)
 * grafana - monitoring with [Grafana Cloud](https://grafana.com/products/cloud/) (free tier)
@@ -102,4 +88,21 @@ Roles:
   , [Librespot](https://github.com/librespot-org/librespot), [Shairport](https://github.com/mikebrady/shairport-sync)
 * samba - my family disk for files and automated backups, see [Samba](https://www.samba.org)
 * viewtube - YouTube without ads, see [ViewTube](https://viewtube.io/)
+* tailscale - VPN done right, see [Tailscale](https://tailscale.com/)
+* traefik - Reverse proxy, see [Traefik](https://doc.traefik.io/traefik/)
 * transmission - BitTorrent daemon, see [Transmission](https://transmissionbt.com)
+
+### Upgrade playbook
+
+Upgrade system to the latest Bullseye:
+
+```shell
+ansible all -m apt -a "upgrade=yes update_cache=yes"
+```
+
+The following packages have versions pinned and needs to updated explicitly:
+
+* adguard
+* grafana-agent
+* kodi
+* viewtube
