@@ -1,21 +1,21 @@
 - name: Create group
-  group:
+  ansible.builtin.group:
     name: "{{ viewtube_group }}"
     system: true
 
 - name: Create user
-  user:
+  ansible.builtin.user:
     name: "{{ viewtube_user }}"
-    group: "{{ viewtube_group }}"
-    groups: [ "docker" ]
+    ansible.builtin.group: "{{ viewtube_group }}"
+    groups: ["docker"]
     system: true
   register: user
 
 - name: Create directories
-  file:
+  ansible.builtin.file:
     path: "{{ user.home }}/{{ item }}"
     owner: "{{ viewtube_user }}"
-    group: "{{ viewtube_group }}"
+    ansible.builtin.group: "{{ viewtube_group }}"
     mode: "0755"
     state: directory
   with_items:
@@ -23,7 +23,7 @@
     - data
 
 - name: Configure service
-  template:
+  ansible.builtin.template:
     src: docker-compose.yml
     dest: "{{ user.home }}/conf/docker-compose.yml"
     mode: "0644"
@@ -31,14 +31,14 @@
     - restart
 
 - name: Create containers
-  docker_compose:
+  community.docker.docker_compose:
     project_src: "{{ user.home }}/conf"
-      
+
   notify:
     - restart
 
 - name: Install service
-  template:
+  ansible.builtin.template:
     src: viewtube.service
     dest: /etc/systemd/system/viewtube.service
     mode: "0644"
@@ -46,9 +46,8 @@
     - restart
 
 - name: Enable service
-  systemd:
+  ansible.builtin.systemd:
     name: viewtube
     enabled: yes
   notify:
     - restart
-

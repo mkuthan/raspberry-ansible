@@ -1,5 +1,5 @@
 - name: Check variables
-  assert:
+  ansible.builtin.assert:
     that:
       - postfix.relay_host is defined
       - postfix.sasl_mail is defined
@@ -7,12 +7,12 @@
     quiet: yes
 
 - name: Install
-  apt:
-    name: [ "postfix", "libsasl2-modules" ]
+  ansible.builtin.apt:
+    name: ["postfix", "libsasl2-modules"]
     update_cache: yes
 
 - name: Setup SASL password
-  template:
+  ansible.builtin.template:
     src: sasl_password
     dest: "{{ postfix_sasl_password_file }}"
     mode: "0640"
@@ -20,13 +20,13 @@
     - postmap
 
 - name: Change SASL permissions
-  file:
+  ansible.builtin.file:
     dest: "{{ postfix_sasl_password_dir }}"
     mode: "0640"
     recurse: yes
 
 - name: Setup aliases
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/aliases
     regexp: "^root:"
     line: "root: {{ postfix.sasl_mail }}"
@@ -34,7 +34,7 @@
     - aliases
 
 - name: Configure
-  template:
+  ansible.builtin.template:
     src: main.cf
     dest: /etc/postfix/main.cf
     mode: "0644"

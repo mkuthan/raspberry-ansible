@@ -1,19 +1,19 @@
 - name: reboot
-  reboot:
+  ansible.builtin.reboot:
     post_reboot_delay: 10
     reboot_timeout: 60
 
 - name: restart dhcpcd
-  service:
+  ansible.builtin.service:
     name: dhcpcd
     state: restarted
 
 - name: restart journald
-  service:
+  ansible.builtin.service:
     name: systemd-journald
     state: restarted
 
 - name: restart sshd
-  service:
+  ansible.builtin.service:
     name: sshd
     state: restarted

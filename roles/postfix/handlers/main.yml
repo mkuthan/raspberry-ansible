@@ -1,10 +1,10 @@
 - name: restart postfix
-  systemd:
+  ansible.builtin.systemd:
     name: postfix
     state: restarted
 
 - name: postmap
-  command: postmap {{ postfix_sasl_password_file }}
+  ansible.builtin.command: postmap {{ postfix_sasl_password_file }}
 
 - name: aliases
-  command: newaliases
+  ansible.builtin.command: newaliases

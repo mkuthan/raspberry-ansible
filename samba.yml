@@ -101,7 +101,7 @@
     #     name: timemachine
 
     - name: Create accounts
-      user:
+      ansible.builtin.user:
         name: "{{ item.name }}"
         password: "{{ item.password | password_hash('sha512', password_salt) }}"
         group: "{{ item.group | default('users') }}"

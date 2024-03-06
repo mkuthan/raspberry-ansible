@@ -1,5 +1,5 @@
 - name: Configure dhcpcd
-  template:
+  ansible.builtin.template:
     src: dhcpcd.conf
     dest: "{{ common_dhcpcd_config_file }}"
     mode: "0644"

@@ -1,11 +1,11 @@
 - name: Configure hostname '{{ hostname }}'
-  hostname:
+  ansible.builtin.hostname:
     name: "{{ hostname }}"
   when: hostname is defined
 
 - name: Update hosts
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/hosts
     regexp: '^127\.0\.1\.1'
-    line: '127.0.1.1 {{ hostname }}'
+    line: "127.0.1.1 {{ hostname }}"
   when: hostname is defined

@@ -1,16 +1,16 @@
 - name: Check variables
-  assert:
+  ansible.builtin.assert:
     that:
       - grafana.username is defined
       - grafana.password is defined
     quiet: yes
 
 - name: Install
-  apt:
+  ansible.builtin.apt:
     deb: "{{ grafana_agent_deb_url }}"
 
 - name: Configure defaults
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/default/grafana-agent
     regexp: "^CUSTOM_ARGS="
     line: 'CUSTOM_ARGS="{{ grafana_custom_args }}"'
@@ -18,7 +18,7 @@
     - restart grafana
 
 - name: Configure service
-  template:
+  ansible.builtin.template:
     src: grafana-agent.yaml
     dest: /etc/grafana-agent.yaml
     mode: "0640"
@@ -26,6 +26,6 @@
     - restart grafana
 
 - name: Enable service
-  systemd:
+  ansible.builtin.systemd:
     name: grafana-agent
     enabled: yes

@@ -1,31 +1,31 @@
 - name: Add apt key
-  apt_key:
+  ansible.builtin.apt_key:
     url: http://packages.fluentbit.io/fluentbit.key
 
 - name: Add apt repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb https://packages.fluentbit.io/{{ ansible_lsb.id | lower }}/{{ ansible_distribution_release }} {{ ansible_distribution_release }} main"
     filename: "fluentbit"
 
 - name: Install
-  apt:
+  ansible.builtin.apt:
     name: td-agent-bit
 
 - name: Create var directory
-  file:
+  ansible.builtin.file:
     path: "{{ fluentbit_var_dir }}"
     mode: "0755"
     state: directory
 
 - name: Copy stackdriver key
-  copy:
+  ansible.builtin.copy:
     src: "{{ fluentbit.stackdriver.google_service_credentials }}"
     dest: "{{ fluentbit_var_dir }}/stackdriver.key"
     mode: "0400"
   when: fluentbit.stackdriver is defined
 
 - name: Configure
-  template:
+  ansible.builtin.template:
     src: td-agent-bit.conf
     dest: /etc/td-agent-bit/td-agent-bit.conf
     mode: "0644"
@@ -33,7 +33,7 @@
     - restart fluentbit
 
 - name: Enable service
-  systemd:
+  ansible.builtin.systemd:
     name: td-agent-bit
     state: started
     enabled: yes

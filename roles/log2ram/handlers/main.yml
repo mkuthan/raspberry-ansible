@@ -1,4 +1,4 @@
 - name: restart log2ram
-  service:
+  ansible.builtin.service:
     name: log2ram
     state: restarted

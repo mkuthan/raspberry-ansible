@@ -1,7 +1,4 @@
 skip_list:
-  - fqcn # global
-  - fqcn-builtins # global
   - yaml # global
   - name # global
   - no-changed-when # roles/common/tasks/swap.yml
-  - package-latest # roles/packages/tasks/update.yml

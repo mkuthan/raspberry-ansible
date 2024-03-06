@@ -1,9 +1,9 @@
 - name: Install
-  apt:
+  ansible.builtin.apt:
     name: hd-idle
 
 - name: Configure
-  template:
+  ansible.builtin.template:
     src: hd-idle
     dest: /etc/default/hd-idle
     mode: "0644"

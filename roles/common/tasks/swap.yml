@@ -1,5 +1,5 @@
 - name: Check for dphys-swapfile
-  stat:
+  ansible.builtin.stat:
     path: /etc/dphys-swapfile
   register: dphys_swapfile
 
@@ -8,10 +8,10 @@
     - dphys_swapfile.stat.exists
   block:
     - name: Turn off swap
-      command: dphys-swapfile swapoff
+      ansible.builtin.command: dphys-swapfile swapoff
         dphys-swapfile uninstall
     - name: Disable service
-      systemd:
+      ansible.builtin.systemd:
         name: dphys-swapfile
         state: stopped
         enabled: no

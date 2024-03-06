@@ -1,11 +1,11 @@
 - name: Disable rsyslog
-  systemd:
+  ansible.builtin.systemd:
     name: rsyslog
     state: stopped
     enabled: no
 
 - name: Disable forwarding to syslog
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ common_journald_config_file }}"
     regexp: "^#?ForwardToSyslog="
     line: "ForwardToSyslog=no"
@@ -14,7 +14,7 @@
     - restart journald
 
 - name: Limit journald size to '{{ journald.system_max_use }}'
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ common_journald_config_file }}"
     regexp: "^#?SystemMaxUse="
     line: "SystemMaxUse={{ journald.system_max_use }}"
@@ -23,7 +23,7 @@
     - restart journald
 
 - name: Limit journald retention to '{{ journald.max_file_sec }}'
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ common_journald_config_file }}"
     regexp: "^#?MaxFileSec="
     line: "MaxFileSec={{ journald.max_file_sec }}"

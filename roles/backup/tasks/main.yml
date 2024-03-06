@@ -1,16 +1,16 @@
 - name: Install
-  apt:
-    name: [ "backupninja", "rdiff-backup", "hwinfo" ]
+  ansible.builtin.apt:
+    name: ["backupninja", "rdiff-backup", "hwinfo"]
     update_cache: yes
 
 - name: Create destination directory
-  file:
+  ansible.builtin.file:
     path: "{{ backup_dest_dir }}"
     mode: "0755"
     state: directory
 
 - name: Create destination sub directories
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     mode: "0755"
     state: directory
@@ -19,13 +19,13 @@
     - "{{ backup_dest_rdiff_dir }}"
 
 - name: Disable reporting success
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ backup_config_file }}"
     regexp: "^reportsuccess"
     line: "reportsuccess = no"
 
 - name: Configure
-  template:
+  ansible.builtin.template:
     src: "{{ item }}"
     dest: "{{ backup_config_dir }}/{{ item | basename }}"
     mode: "0640"

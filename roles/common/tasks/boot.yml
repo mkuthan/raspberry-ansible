@@ -1,5 +1,5 @@
 - name: Set boot config params
-  lineinfile:
+  ansible.builtin.lineinfile:
     regexp: "^{{ item.name }}="
     line: "{{ item.name }}={{ item.value }}"
     path: "{{ common_boot_config_file }}"
@@ -9,7 +9,7 @@
     - reboot
 
 - name: Enable boot config params
-  lineinfile:
+  ansible.builtin.lineinfile:
     regexp: "^#?{{ item }}"
     line: "{{ item }}"
     path: "{{ common_boot_config_file }}"
@@ -19,7 +19,7 @@
     - reboot
 
 - name: Disable boot config params
-  lineinfile:
+  ansible.builtin.lineinfile:
     regexp: "^#?{{ item }}"
     line: "#{{ item }}"
     path: "{{ common_boot_config_file }}"

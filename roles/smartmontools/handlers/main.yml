@@ -1,4 +1,4 @@
 - name: restart smartmontools
-  service:
+  ansible.builtin.service:
     name: smartmontools
     state: restarted

@@ -1,4 +1,4 @@
 - name: restart hdidle
-  service:
+  ansible.builtin.service:
     name: hd-idle
     state: restarted

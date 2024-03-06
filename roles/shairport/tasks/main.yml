@@ -1,10 +1,10 @@
 - name: Install
-  apt:
+  ansible.builtin.apt:
     name: shairport-sync
     update_cache: yes
 
 - name: Configure
-  template:
+  ansible.builtin.template:
     src: shairport-sync.conf
     dest: "{{ shairport_config_file }}"
     mode: "0644"

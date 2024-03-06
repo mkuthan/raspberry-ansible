@@ -1,13 +1,13 @@
 - name: Add apt key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://apt.hyperion-project.org/hyperion.pub.key
 
 - name: Add apt repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb https://apt.hyperion-project.org/ {{ ansible_distribution_release }} main"
     filename: "hyperion"
 
 - name: Install
-  apt:
+  ansible.builtin.apt:
     name: hyperion
     update_cache: yes

@@ -1,9 +1,9 @@
 - name: Install
-  apt:
+  ansible.builtin.apt:
     name: smartmontools
 
 - name: Configure defaults
-  template:
+  ansible.builtin.template:
     src: smartmontools
     dest: /etc/default/smartmontools
     mode: "0644"
@@ -12,7 +12,7 @@
     - restart smartmontools
 
 - name: Configure smartd
-  template:
+  ansible.builtin.template:
     src: smartd.conf
     dest: /etc/smartd.conf
     mode: "0644"

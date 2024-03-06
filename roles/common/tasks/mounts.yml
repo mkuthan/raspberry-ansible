@@ -1,5 +1,5 @@
 - name: Configure mount points
-  mount:
+  ansible.posix.mount:
     src: "UUID={{ item.uuid }}"
     path: "{{ item.path }}"
     fstype: "{{ item.fstype }}"

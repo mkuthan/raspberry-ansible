@@ -1,4 +1,4 @@
 - name: restart grafana
-  systemd:
+  ansible.builtin.systemd:
     name: grafana-agent
     state: restarted

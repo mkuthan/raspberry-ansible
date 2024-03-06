@@ -1,19 +1,19 @@
 - name: Add apt key
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://dtcooper.github.io/raspotify/key.asc
 
 - name: Add apt repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb https://dtcooper.github.io/raspotify raspotify main
     filename: "raspotify"
 
 - name: Install
-  apt:
+  ansible.builtin.apt:
     name: raspotify
     update_cache: yes
 
 - name: Configure
-  template:
+  ansible.builtin.template:
     src: raspotify.conf
     dest: "{{ raspotify_config_file }}"
     mode: "0600"

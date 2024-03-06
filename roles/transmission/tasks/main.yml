@@ -1,13 +1,13 @@
 - name: Install
-  apt:
+  ansible.builtin.apt:
     name: transmission-daemon
     update_cache: yes
 
 - name: Create directories
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     owner: "{{ transmission_user }}"
-    group: "{{ transmission_group }}"
+    ansible.builtin.group: "{{ transmission_group }}"
     mode: "0755"
     state: directory
   with_items:
@@ -16,21 +16,21 @@
 
 # Transmission override configuration on stop, grr
 - name: Stop service before configuration
-  service:
+  ansible.builtin.service:
     name: transmission-daemon
     state: stopped
 
 - name: Configure
-  template:
+  ansible.builtin.template:
     src: settings.j2
     dest: /etc/transmission-daemon/settings.json
     mode: "0644"
     owner: "{{ transmission_user }}"
-    group: "{{ transmission_group }}"
+    ansible.builtin.group: "{{ transmission_group }}"
   notify:
     - restart
 
 - name: Start
-  service:
+  ansible.builtin.service:
     name: transmission-daemon
     state: started

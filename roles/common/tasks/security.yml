@@ -1,10 +1,10 @@
 - name: Disable pi login
-  user:
+  ansible.builtin.user:
     name: pi
     password: "!"
 
 - name: Disable root login via SSH
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ common_sshd_config_file }}"
     regexp: "^PermitRootLogin"
     line: "PermitRootLogin no"
@@ -12,7 +12,7 @@
     - restart sshd
 
 - name: Disable password login via SSH
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ common_sshd_config_file }}"
     regexp: "^PasswordAuthentication"
     line: "PasswordAuthentication no"
