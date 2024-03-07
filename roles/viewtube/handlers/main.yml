@@ -1,4 +1,0 @@
-- name: restart
-  ansible.builtin.systemd:
-    name: viewtube
-    state: restarted

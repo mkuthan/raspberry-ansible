@@ -6,7 +6,7 @@
   ansible.builtin.file:
     path: /home/pi/.aria2
     owner: pi
-    ansible.builtin.group: pi
+    group: pi
     mode: "0755"
     state: directory
 
@@ -15,5 +15,5 @@
     src: aria2.conf
     dest: /home/pi/.aria2/aria2.conf
     owner: "pi"
-    ansible.builtin.group: "pi"
+    group: "pi"
     mode: "0644"

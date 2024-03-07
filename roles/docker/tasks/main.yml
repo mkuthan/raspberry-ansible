@@ -20,3 +20,5 @@
 - name: Create network
   community.docker.docker_network:
     name: "{{ docker_network_name }}"
+    driver_options:
+      com.docker.network.bridge.name: "docker1"

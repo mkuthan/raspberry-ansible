@@ -87,7 +87,6 @@ Roles:
 * raspotify, shairport - make my retired HiFi great again: [Raspotify](https://github.com/dtcooper/raspotify)
   , [Librespot](https://github.com/librespot-org/librespot), [Shairport](https://github.com/mikebrady/shairport-sync)
 * samba - my family disk for files and automated backups, see [Samba](https://www.samba.org)
-* viewtube - YouTube without ads, see [ViewTube](https://viewtube.io/)
 * tailscale - VPN done right, see [Tailscale](https://tailscale.com/)
 * traefik - Reverse proxy, see [Traefik](https://doc.traefik.io/traefik/)
 * transmission - BitTorrent daemon, see [Transmission](https://transmissionbt.com)
@@ -105,4 +104,3 @@ The following packages have versions pinned and needs to updated explicitly:
 * adguard
 * grafana-agent
 * kodi
-* viewtube

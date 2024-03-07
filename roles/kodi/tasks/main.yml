@@ -16,7 +16,7 @@
 - name: Create user
   ansible.builtin.user:
     name: "{{ kodi_user }}"
-    ansible.builtin.group: "{{ kodi_group }}"
+    group: "{{ kodi_group }}"
     groups: ["audio", "input", "video", "render"]
     system: true
   register: user
@@ -44,7 +44,7 @@
   ansible.builtin.file:
     path: "{{ user.home }}/.kodi/{{ item }}"
     owner: "{{ kodi_user }}"
-    ansible.builtin.group: "{{ kodi_group }}"
+    group: "{{ kodi_group }}"
     mode: "0755"
     state: directory
   loop:
@@ -71,7 +71,7 @@
 
 - name: Configure guisettings.xml
   community.general.xml:
-    ansible.builtin.file: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
+    file: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
     xpath: "/settings/setting[@id='{{ item.id }}']"
     value: "{{ item.value }}"
   with_items: "{{ kodi_gui_settings }}"
@@ -85,7 +85,7 @@
 
 - name: Configure subtitles guisettings.xml
   community.general.xml:
-    ansible.builtin.file: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
+    file: "{{ user.home }}/.kodi/{{ kodi_userdata_dir }}/guisettings.xml"
     xpath: "/settings/setting[@id='{{ item.id }}']"
     value: "{{ item.value }}"
   with_items: "{{ kodi_subtitles_gui_settings }}"

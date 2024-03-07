@@ -10,6 +10,18 @@
     dest: /etc/traefik/traefik.yml
     mode: "0644"
 
+- name: Create /etc/traefik/dynamic
+  ansible.builtin.file:
+    path: /etc/traefik/dynamic
+    state: directory
+    mode: "0755"
+
+- name: Configure Traefik dynamic HTTP configuration
+  ansible.builtin.template:
+    src: http.yml.j2
+    dest: /etc/traefik/dynamic/http.yml
+    mode: "0644"
+
 - name: Create Traefik volumes
   community.docker.docker_volume:
     volume_name: "{{ item }}"
