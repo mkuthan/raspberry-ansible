@@ -13,7 +13,6 @@
     ports:
       - 53:53/tcp # DNS
       - 53:53/udp # DNS
-      # - 443:443/tcp # DNS over HTTPS
       - 853:853/tcp # DNS over TLS
       - "{{ adguard_port }}:3000/tcp" # Web interface
 
