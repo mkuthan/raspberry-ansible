@@ -11,10 +11,10 @@
     image: adguard/adguardhome:{{ adguard_version }}
 
     ports:
-      - 53:53/tcp # DNS
-      - 53:53/udp # DNS
-      - 853:853/tcp # DNS over TLS
-      - "{{ adguard_port }}:3000/tcp" # Web interface
+      - 53:53/tcp
+      - 53:53/udp
+    expose:
+      - "{{ adguard_port }}:3000/tcp"
 
     volumes:
       - adguard-conf:/opt/adguardhome/conf
@@ -28,6 +28,9 @@
 
     networks:
       - name: "{{ docker_network_name }}"
+
+    comparisons:
+      labels: strict
 
     state: started
     restart_policy: unless-stopped
